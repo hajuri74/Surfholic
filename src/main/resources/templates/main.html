@@ -3,15 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/js/common.js"></script>
     <title>해양정보</title>
 </head>
 
 <body>
     <div id="wrap">
         <section id="sec1">
-            <div id="sec1-box2">
-                <div class="sec1-box2-con">
-                    <div class="sec1-title">
+            <div id="circle_wrap">
+                <div class="circle_con">
+                    <div class="circle-title">
+                        <div>
+                            <p>Wind</p>
+                            <p>바람</p>
+                        </div>
+                        <div>데이터1</div>
+                    </div>
+    
+                    <div class="circle_con">
+                        <div class="circle-cal">
+                            <div>N</div>
+                            <div>E</div>
+                            <div>S</div>
+                            <div>W</div>
+                        </div>
+                        <img src="/imgs/cir.jpg"/>
+                    </div>
+    
+                    <div>데이터1<span>m/s</span></div>
+                </div>
+    
+                <div class="circle_con">
+                    <div class="circle-title">
                         <div>
                             <p>Wind</p>
                             <p>바람</p>
@@ -20,38 +45,16 @@
                     </div>
     
                     <div>
-                        <div class="sec1-cal">
+                        <div class="circle-cal">
                             <div>N</div>
                             <div>E</div>
                             <div>S</div>
                             <div>W</div>
                         </div>
-                        <div><img src=""/></div>
+                        <img src="/imgs/cir.jpg"/>
                     </div>
     
                     <div>데이터1<span>m/s</span></div>
-                </div>
-    
-                <div class="sec2-con">
-                    <div class="sec2-title">
-                        <div>
-                            <p>Current</p>
-                            <p>유향/유속</p>
-                        </div>
-                        <div>데이터2</div>
-                    </div>
-    
-                    <div>
-                        <div class="sec-cal">
-                            <div>N</div>
-                            <div>E</div>
-                            <div>S</div>
-                            <div>W</div>
-                        </div>
-                        <div><img src=""/></div>
-                    </div>
-                    
-                    <div>데이터2<span>cm/s</span></div>
                 </div>
             </div>
             
@@ -66,7 +69,78 @@
         </section>
     </div>
 
+<!-- 포항 -->
+    <div>포항</div>
+    <script id="wg_fwdg_53_3_1700009513860">
+        (function (window, document) {
+          var loader = function () {
+            var arg = ["s=53" ,"m=3","uid=wg_fwdg_53_3_1700009513860" ,"wj=knots" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,MWINDSPD,SMER,TMPE,FLHGT,CDC,APCP1s,RATING"];
+            var script = document.createElement("script");
+            var tag = document.getElementsByTagName("script")[0];
+            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+            tag.parentNode.insertBefore(script, tag);
+          };
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+    </script>
 
+<!-- 강릉 -->
+<div>강릉</div>
+<script id="wg_fwdg_1199670_3_1700012042928">
+    (function (window, document) {
+      var loader = function () {
+        var arg = ["s=1199670" ,"m=3","uid=wg_fwdg_1199670_3_1700012042928" ,"wj=knots" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,MWINDSPD,SMER,TMPE,FLHGT,CDC,APCP1s,RATING"];
+        var script = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+        tag.parentNode.insertBefore(script, tag);
+      };
+      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+</script>
+
+    <!-- 서프홀릭울산 -->
+    <div>울산</div>
+    <script id="wg_fwdg_654165_100_1700012275334">
+        (function (window, document) {
+          var loader = function () {
+            var arg = ["s=654165" ,"m=100","uid=wg_fwdg_654165_100_1700012275334" ,"wj=knots" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC,APCP1s,RATING"];
+            var script = document.createElement("script");
+            var tag = document.getElementsByTagName("script")[0];
+            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+            tag.parentNode.insertBefore(script, tag);
+          };
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+        </script>
+    
+    <!-- 다대포 -->
+    <div>다대포</div>
+    <script id="wg_fwdg_208543_100_1700012331970">
+        (function (window, document) {
+          var loader = function () {
+            var arg = ["s=208543" ,"m=100","uid=wg_fwdg_208543_100_1700012331970" ,"wj=knots" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"p=WINDSPD,GUST,SMER,TMPE,FLHGT,CDC,APCP1s,RATING"];
+            var script = document.createElement("script");
+            var tag = document.getElementsByTagName("script")[0];
+            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+            tag.parentNode.insertBefore(script, tag);
+          };
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+        </script>
+
+<script id="wg_fwdg_208542_100_1700035190075">
+    (function (window, document) {
+      var loader = function () {
+        var arg = ["s=208542" ,"m=100","mw=84","uid=wg_fwdg_208542_100_1700035190075" ,"wj=knots" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"p=WINDSPD,GUST,SMER,HTSGW,PERPW,DIRPW,SWDIR2,WVHGT,WVPER,WVDIR,TMP,TMPE,FLHGT,CDC,APCP1s,RATING"];
+        var script = document.createElement("script");
+        var tag = document.getElementsByTagName("script")[0];
+        script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+        tag.parentNode.insertBefore(script, tag);
+      };
+      window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    })(window, document);
+    </script>
     <a href="/seadata?obsCode=DT_0005">부산본점</a>
     <!-- <a href="/seadata?obsCode=DT_0005">부산다대포</a> -->
     <a href="/seadata?obsCode=DT_0091">포항</a>
