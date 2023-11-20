@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/common.js"></script>
+    <script src="/js/main.js"></script>
     <title>해양정보</title>
 </head>
 
 <body>
     <div id="wrap">
+        <div class="title"></div>
         <section id="sec1">
             <div id="circle_wrap">
                 <div class="circle_con">
@@ -65,9 +65,22 @@
         </section>
 
         <section>
-
         </section>
     </div>
+
+    <div>송정해수욕장</div>
+    <script id="wg_fwdg_208542_100_1700440455527">
+        (function (window, document) {
+          var loader = function () {
+            var arg = ["s=208542" ,"m=100","mw=47","uid=wg_fwdg_208542_100_1700440455527" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,PERPW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,APCP1s,SLP,RATING"];
+            var script = document.createElement("script");
+            var tag = document.getElementsByTagName("script")[0];
+            script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+            tag.parentNode.insertBefore(script, tag);
+          };
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+    </script>
 
 <!-- 포항 -->
     <div>포항</div>
@@ -140,7 +153,9 @@
       };
       window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
     })(window, document);
-    </script>
+
+</script>
+
     <a href="/seadata?obsCode=DT_0005">부산본점</a>
     <!-- <a href="/seadata?obsCode=DT_0005">부산다대포</a> -->
     <a href="/seadata?obsCode=DT_0091">포항</a>
