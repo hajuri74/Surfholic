@@ -16,23 +16,32 @@ window.onload = function() {
     //실측 기상청 API
     getApi();
 
-    function callJsonApi(url, saveFilePath) {  // Text API 호출 함수
-        fetch(url)  // fetch를 통해 API 호출
-          .then(response => response.json())  // 응답을 JSON으로 변환
-          .then(data => {
-            console.log(data);  // 데이터 출력
-            // saveFilePath를 사용하여 데이터를 저장하거나 추가적인 처리를 수행할 수 있습니다.
-          })
-          .catch(error => {
-            console.error('API 호출 중 오류가 발생했습니다:', error);
-            // 오류 처리를 수행할 수 있습니다.
-          });
-      }
+    //api key
+    
+
+    let url = ""
+    //국립해양
+    fetch(url)
+    .then((response)=>response.json())
+    .then((data)=> console.log(data));
+
+    // function callJsonApi(url, saveFilePath) {  // Text API 호출 함수
+    //     fetch(url)  // fetch를 통해 API 호출
+    //       .then(response => response.json())  // 응답을 JSON으로 변환
+    //       .then(data => {
+    //         console.log(data);  // 데이터 출력
+    //         // saveFilePath를 사용하여 데이터를 저장하거나 추가적인 처리를 수행할 수 있습니다.
+    //       })
+    //       .catch(error => {
+    //         console.error('API 호출 중 오류가 발생했습니다:', error);
+    //         // 오류 처리를 수행할 수 있습니다.
+    //       });
+    // }
       
     // 사용 예시 https://apihub.kma.go.kr/api/json
-    const apiUrl = "https://apihub.kma.go.kr/api/typ01/url/kma_buoy.php?tm=202301241200&stn=0&help=1&authKey=dtUNcalsR1KVDXGpbNdSJQ";
-    const savePath = "/path/to/save/file.json";
-    callJsonApi(apiUrl, savePath);
+    // const apiUrl = "https://apihub.kma.go.kr/api/typ01/url/kma_buoy.php?tm=202301241200&stn=0&help=1&authKey=dtUNcalsR1KVDXGpbNdSJQ";
+    // const savePath = "/path/to/save/file.json";
+    // callJsonApi(apiUrl, savePath);
 
     // function ajax(data) {
     //     var xhr = new XMLHttpRequest();
@@ -49,10 +58,17 @@ window.onload = function() {
 function getApi() {
     var xhr = new XMLHttpRequest();
     var url = "https://apihub.kma.go.kr/api/typ01/url/kma_buoy.php?tm=202301241200&stn=0&help=1&authKey=dtUNcalsR1KVDXGpbNdSJQ";
-    xhr.open("GET", "https://apihub.kma.go.kr/api/typ01/url/kma_buoy.php?tm=202301241200&stn=0&help=1&authKey=dtUNcalsR1KVDXGpbNdSJQ");
+    var params = '?' + encodeURIComponent('tm') + '=' + '202301241200&stn';
+    params += '&' + encodeURIComponent('stn') + '=' + '0';
+    params += '&' + encodeURIComponent('help') + '=' + '1';
+    params += '&' + encodeURIComponent('authKey') + '=' + 'dtUNcalsR1KVDXGpbNdSJQ';
+
+    xhr.open("GET", url + params);
+    const status = xhr.status;
     xhr.onreadystatechange = function() {
-        if(this.readyState == 400 && this.status == 200) {
-            var res = this.responseText;
+      console.log(res);
+        if(status === 0 || (status >= 200 && status < 400)) {
+            var res = xhr.responseText;
             console.log(res);
         }
     }
