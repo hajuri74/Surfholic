@@ -111,9 +111,11 @@
   
   //바다누리 api 
   //데이터타입 : 유의파고, 해양관측부이 풍향/풍속, 조위관측소 실측 풍향/풍속, 해수유동 해양관측부이 실측 유향 유속, 해수유동 해수유동 관측소 실측 유향 유속, 해양관측부이 실측기온, 조위관측소 실츨기온, 해양관측부이 실측 수온, 조위관측 실측 수온
-  let dataType = ["obsWaveHight", "tidalBuWind", "tideObsWind", "tidalBu", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
-  //관측소 : 경포대해수욕장(강릉경포), 망상해수욕장(강릉), 송정해수욕장, 제주해협(제주월정), 파고까지 있음/ 포항, 부산항 신항(다대포), 제주 
-  let obsCode =  ["TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091", "DT_0020", "DT_0056", "DT_0004"];
+  //let dataType = ["obsWaveHight", "tidalBuWind", "tideObsWind", "tidalBu", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
+  let dataType = [["obsWaveHight", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tidalBuWind","TW_0089", "TW_0094", "TW_0090", "KG_0028"], ["tideObsWind", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBu", "TW_0089", "TW_0094", "TW_0090", "KG_0028"], ["tidalHfRadar", "DT_0091", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBuAirTemp", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tideObsAirTemp", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBuTemp", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tideObsTemp", "DT_0004" ,"DT_0020", "DT_0056"]];
+  //관측소 : 경포대해수욕장(강릉경포), 망상해수욕장(강릉), 송정해수욕장, 제주해협(제주월정), 제주, 울산, 파고까지 있음/ 포항, 부산항 신항(다대포), 제주 
+  //let obsCode =  ["TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091", "DT_0004" ,"DT_0020", "DT_0056", "DT_0004"];
+  
   //검색 기준 날짜
   let today = todayFun();
   console.log(today);
@@ -126,14 +128,20 @@
     return year + month + day;
   }
 
-  //예시 http://www.khoa.go.kr/api/oceangrid/obsWaveHight/search.do?ServiceKey=wldhxng34hkddbsgm81lwldhxng34hkddbsgm81l==&ObsCode=TW_0062&Date=20141101&ResultType=json  
-  let url = "http://www.khoa.go.kr/api/oceangrid/"+dataType[0]+"/search.do?ServiceKey="+api_key2+"&ObsCode="+obsCode[0]+"&Date="+today+"&ResultType=json";
-  console.log(url);
+  console.log(dataType.length);
 
-  dataType.forEach(list => {
-    console.log(list);
-    
-  });
+  //예시 http://www.khoa.go.kr/api/oceangrid/obsWaveHight/search.do?ServiceKey=wldhxng34hkddbsgm81lwldhxng34hkddbsgm81l==&ObsCode=TW_0062&Date=20141101&ResultType=json  
+  let url = "http://www.khoa.go.kr/api/oceangrid/"+dataType[0]+"/search.do?ServiceKey="+api_key2+"&ObsCode="+dataType[0]+"&Date="+today+"&ResultType=json";
+  //console.log(url);
+
+  // for (let index = 0; index < dataType.length; index++) {
+  //   let toplist =  dataType[index];
+  //   console.log(dataType[0].length);
+  //   for (let i = 0; i < toplist.length; i++) {
+  //     //console.log(dataType[index].toplist[i]);
+  //     url = "http://www.khoa.go.kr/api/oceangrid/"+dataType[index]+"/search.do?ServiceKey="+api_key2+"&ObsCode="+dataType[index].toplist[i]+"&Date="+today+"&ResultType=json";
+  //   }
+  // }
   
   //국립해양
   // fetch(url,{
@@ -145,16 +153,16 @@
   // .then((data)=> console.log(data));
 
   // 이걸로 실행
-  $.ajax({
-    url:url,
-    type: 'GET',
-    success : function(response) {
-      //console.log(response);
-      var data = JSON.parse(response);
-      dataResult(data);
-    },
-    error : function(xhr){console.log(xhr)} 
-  });
+  // $.ajax({
+  //   url:url,
+  //   type: 'GET',
+  //   success : function(response) {
+  //     //console.log(response);
+  //     var data = JSON.parse(response);
+  //     dataResult(data);
+  //   },
+  //   error : function(xhr){console.log(xhr)} 
+  // });
 
   function dataResult(data) {
     let data_top = data.result.data;

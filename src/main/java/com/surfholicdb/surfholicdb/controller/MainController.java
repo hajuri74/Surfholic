@@ -19,20 +19,25 @@ public class MainController {
     @Autowired
     private MainService mainService;
 
-    @CrossOrigin(origins = {"http://127.0.0.1:8080"})
+    //@CrossOrigin(origins = "http://localhost:8080", maxAge=3600)
     @RequestMapping("/")
-    public ModelAndView main() throws IOException {
+    public String main() throws IOException {
         List<String> sea = new ArrayList<>();
         List<String> date = new ArrayList<>();
         List<String> future = new ArrayList<>();
 
+
+        //기상청 API
+    
         //sea = mainService.getSeaInfo();
         //date = mainService.getDateApi();
         //future = mainService.getFutureDateApi();
 
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("main");
-        return mv;
+        //mainService.getwindApi();
+
+        //ModelAndView mv = new ModelAndView();
+        //mv.setViewName("main");
+        return "main";
     }
 
     @RequestMapping("/seadata")

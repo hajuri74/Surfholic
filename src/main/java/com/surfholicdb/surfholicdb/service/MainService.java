@@ -10,5 +10,7 @@ public interface MainService {
     List<String> getDateApi() throws IOException;
 
     List<String> getFutureDateApi() throws IOException;
+
+    //void getwindApi() throws IOException;
     
 }

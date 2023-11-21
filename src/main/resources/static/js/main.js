@@ -66,7 +66,7 @@ function getApi() {
     xhr.open("GET", url + params);
     const status = xhr.status;
     xhr.onreadystatechange = function() {
-      console.log(res);
+    console.log(res);
         if(status === 0 || (status >= 200 && status < 400)) {
             var res = xhr.responseText;
             console.log(res);
