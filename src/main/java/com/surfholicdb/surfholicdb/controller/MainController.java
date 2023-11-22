@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,7 +20,7 @@ public class MainController {
 
     //@CrossOrigin(origins = "http://localhost:8080", maxAge=3600)
     @RequestMapping("/")
-    public String main() throws IOException {
+    public String main() {
         List<String> sea = new ArrayList<>();
         List<String> date = new ArrayList<>();
         List<String> future = new ArrayList<>();
@@ -37,7 +36,7 @@ public class MainController {
 
         //ModelAndView mv = new ModelAndView();
         //mv.setViewName("main");
-        return "main";
+        return "main.html";
     }
 
     @RequestMapping("/seadata")

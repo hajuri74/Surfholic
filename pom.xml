@@ -111,7 +111,7 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	<!-- <build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -129,10 +129,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 
-	<!-- 없어도 되는데 일단 붙이기 -->
-	<!-- <build>
+	<build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -147,5 +146,5 @@
                 </configuration>
             </plugin>
         </plugins>
-    </build> -->
+    </build>
 </project>

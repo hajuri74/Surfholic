@@ -24,11 +24,11 @@
             <div id="circle_wrap">
                 <div class="circle_con">
                     <div class="circle-title">
-                        <div>
-                            <p>Wind</p>
-                            <p>바람</p>
+                        <p>Wind</p>
+                        <div id="api_wind">
+                          <p>풍향:</p>
+                          <p>풍속:</p>
                         </div>
-                        <div>데이터1</div>
                     </div>
     
                     <div class="circle_con">
@@ -38,7 +38,7 @@
                             <div>S</div>
                             <div>W</div>
                         </div>
-                        <img src="/imgs/cir.jpg"/>
+                        <img src="/images/cir.jpg"/>
                     </div>
     
                     <div>데이터1<span>m/s</span></div>
@@ -60,7 +60,7 @@
                             <div>S</div>
                             <div>W</div>
                         </div>
-                        <img src="/imgs/cir.jpg"/>
+                        <img src="/images/cir.jpg"/>
                     </div>
     
                     <div>데이터1<span>m/s</span></div>
@@ -71,9 +71,6 @@
                 <div>Tide<span>조석</span></div>
                 <div></div>
             </div>
-        </section>
-
-        <section>
         </section>
     </div>
 
@@ -91,121 +88,200 @@
         })(window, document);
     </script>
 
+  <script>
 
+    let dataCurrent = [];
+    window.onload = function(){
+      let wind_dir = document.getElementById("api_wind").firstChild;
+      let wind_speed = document.getElementById("api_wind").lastChild;
 
-    <a href="/seadata?obsCode=DT_0005">부산본점</a>
-    <!-- <a href="/seadata?obsCode=DT_0005">부산다대포</a> -->
-    <a href="/seadata?obsCode=DT_0091">포항</a>
-    <a href="/seadata?obsCode=TW_0094">강릉</a>
-    <a href="/seadata?obsCode=TW_0089">강릉경포(경포대해수욕장)</a>
-    <a href="/seadata?obsCode=IE_0060">울산</a>
-    <a href="/seadata?obsCode=KG_0028">제주월정</a>
-    <a href="/seadata?obsCode=TW_0091">양양(낙산해수욕장)</a>
-
-<script>
-  const api_key = config.apikey;
-  const api_key2 = config.apikey2;
-
-  let url1 = "http://marineweather.nmpnt.go.kr:8001/openWeatherNow.do?serviceKey=" +api_key+ "&resultType=json&mmaf=101&mmsi=994401578,994401597";
-  //let url = "http://www.khoa.go.kr/api/oceangrid/buObsRecent/search.do?ServiceKey=wldhxng34hkddbsgm81lwldhxng34hkddbsgm81l==&ObsCode=TW_0062&ResultType=json";
-  
-  //바다누리 api 
-  //데이터타입 : 유의파고, 해양관측부이 풍향/풍속, 조위관측소 실측 풍향/풍속, 해수유동 해양관측부이 실측 유향 유속, 해수유동 해수유동 관측소 실측 유향 유속, 해양관측부이 실측기온, 조위관측소 실츨기온, 해양관측부이 실측 수온, 조위관측 실측 수온
-  //let dataType = ["obsWaveHight", "tidalBuWind", "tideObsWind", "tidalBu", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
-  let dataType = [["obsWaveHight", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tidalBuWind","TW_0089", "TW_0094", "TW_0090", "KG_0028"], ["tideObsWind", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBu", "TW_0089", "TW_0094", "TW_0090", "KG_0028"], ["tidalHfRadar", "DT_0091", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBuAirTemp", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tideObsAirTemp", "DT_0004" ,"DT_0020", "DT_0056"], ["tidalBuTemp", "TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091"], ["tideObsTemp", "DT_0004" ,"DT_0020", "DT_0056"]];
-  //관측소 : 경포대해수욕장(강릉경포), 망상해수욕장(강릉), 송정해수욕장, 제주해협(제주월정), 제주, 울산, 파고까지 있음/ 포항, 부산항 신항(다대포), 제주 
-  //let obsCode =  ["TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091", "DT_0004" ,"DT_0020", "DT_0056", "DT_0004"];
-  
-  //검색 기준 날짜
-  let today = todayFun();
-  console.log(today);
-  function todayFun() {
-    var date = new Date();
-    var year = date.getFullYear();
-    var month = ("0" + (date.getMonth()+1)).slice(-2);
-    var day = ("0" + date.getDate()).slice(-2);
-
-    return year + month + day;
-  }
-
-  console.log(dataType.length);
-
-  //예시 http://www.khoa.go.kr/api/oceangrid/obsWaveHight/search.do?ServiceKey=wldhxng34hkddbsgm81lwldhxng34hkddbsgm81l==&ObsCode=TW_0062&Date=20141101&ResultType=json  
-  let url = "http://www.khoa.go.kr/api/oceangrid/"+dataType[0]+"/search.do?ServiceKey="+api_key2+"&ObsCode="+dataType[0]+"&Date="+today+"&ResultType=json";
-  //console.log(url);
-
-  // for (let index = 0; index < dataType.length; index++) {
-  //   let toplist =  dataType[index];
-  //   console.log(dataType[0].length);
-  //   for (let i = 0; i < toplist.length; i++) {
-  //     //console.log(dataType[index].toplist[i]);
-  //     url = "http://www.khoa.go.kr/api/oceangrid/"+dataType[index]+"/search.do?ServiceKey="+api_key2+"&ObsCode="+dataType[index].toplist[i]+"&Date="+today+"&ResultType=json";
-  //   }
-  // }
-  
-  //국립해양
-  // fetch(url,{
-  //   mode: 'cors',
-  //   dataType: 'jsonp',
-  //   credentials: 'include' 
-  // })
-  // .then((response)=>response.json())
-  // .then((data)=> console.log(data));
-
-  // 이걸로 실행
-  // $.ajax({
-  //   url:url,
-  //   type: 'GET',
-  //   success : function(response) {
-  //     //console.log(response);
-  //     var data = JSON.parse(response);
-  //     dataResult(data);
-  //   },
-  //   error : function(xhr){console.log(xhr)} 
-  // });
-
-  function dataResult(data) {
-    let data_top = data.result.data;
-    let dataLength = data_top.length;
-
-    var html = "";
-    var div = document.createElement("div");
-    div.innerHTML = data.result.data[0].wave_height;
-    document.body.appendChild(div);
-    
-    //유의파고 최신 값
-    if(dataType[0] === "obsWaveHight"){
-      data_top[dataLength-1].wave_height;
-      console.log(data_top[dataLength-1].wave_height);
-    }else if(dataType[1] === "tidalBuWind") {
-      data_top[dataLength-1].wave_height;
-    }else if(dataType[2] === "tideObsWind") {
-      data_top[dataLength-1].wave_height;
-    }else if(dataType[3] === "tidalBu") {
-      data_top[dataLength-1].wave_height;
-    }else if(dataType[4] === "tidalHfRadar"){
-      data_top[dataLength-1].wave_height;
+      urlsFun("서프홀릭제주월정");
+      console.log(wind_dir);
     }
-  }
 
-  // $.ajax({
-  //   url:url1,
-  //   type: 'GET',     
-  //   contentType: "application/json",
-  //   success : function(response) {
-  //     console.log(response);
-  //   },
-  //   error : function(xhr){console.log(xhr)} 
-  // })
+    const api_key = config.apikey;
+    const api_key2 = config.apikey2;
+
+    //바다누리 api 
+    //데이터타입 : 유의파고, 해양관측부이 풍향/풍속, 조위관측소 실측 풍향/풍속, 해수유동 해양관측부이 실측 유향 유속, 해수유동 해수유동 관측소 실측 유향 유속, 해양관측부이 실측기온, 조위관측소 실츨기온, 해양관측부이 실측 수온, 조위관측 실측 수온
+    //let dateType = ["obsWaveHight", "tidalBuWind", "tideObsWind", "tidalBu", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
+    //관측소 : 경포대해수욕장(강릉경포), 망상해수욕장(강릉), 송정해수욕장, 제주해협(제주월정), 울산, 파고까지 있음/ 포항, 제주,  부산항 신항(다대포) 
+    //["TW_0089- 경포대해수욕장", "TW_0094 - 망상해수욕장", "TW_0090 - 송정해수욕장", "KG_0028 - 제주해협", "DT_0020 - 울산", "DT_0091 - 포항", "DT_0004 - 제주" , "DT_0056 - 부산항신항"];
+    //let dateType1  = [{"TW_0089":["obsWaveHight", "tidalBuWind", "tidalBu", "tidalBuAirTemp", "tidalBuTemp"]},{"TW_0094":["obsWaveHight", "tidalBuWind", "tidalBu", "tidalBuAirTemp", "tidalBuTemp"]},{"TW_0090":["obsWaveHight" ,"tidalBuWind", "tidalBu", "tidalBuAirTemp", "tidalBuTemp"]},{"KG_0028":["obsWaveHight", "tidalBuWind", "tidalBu", "tidalBuAirTemp", "tidalBuTemp"]}];
+    let dateType1 = ["obsWaveHight", "tidalBuWind", "tidalBu", "tidalBuAirTemp", "tidalBuTemp"];
+    let dateType2  = [{"DT_0091":["obsWaveHight", "tideObsWind" ,"tidalBuAirTemp", "tidalBuTemp"]},{"DT_0004":["tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"]}];
+    let dateType3  = [{"DT_0020":["tideObsWind" ,"tidalHfRadar", "tideObsAirTemp", "tideObsTemp"]},{"DT_0056":["tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"]}];
+    //let obsCode = ["TW_0089", "TW_0094", "TW_0090", "KG_0028", "DT_0091", "DT_0004" ,"DT_0020", "DT_0056"];
+    
+    //검색 기준 날짜
+    let today = todayFun();
+    console.log(today);
+    function todayFun() {
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = ("0" + (date.getMonth()+1)).slice(-2);
+      var day = ("0" + date.getDate()).slice(-2);
+
+      return year + month + day;
+    }
+    
+    let urls = [];
 
 
-  // $.ajax({
-  //   url: url1,
-  //   dataType: "json",
-  //   data: data,
-  //   success: success
-  // });
+    function urlsFun(surfUrl) {
+      let region1 = "";
+      var url2 = "/search.do?ServiceKey=";
 
-</script>
-</body>
+      //let dateType = ["obsWaveHight", "tidalBuWind","tidalBu", "tideObsWind", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
+      if(surfUrl === '서프홀릭포항'){
+        //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+        //유의파고
+        //없은 다른 api 찾아야 함
+        //조위관측 풍향/풍속
+        urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+        //해수유동관측소 유향/유속
+        urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
+        //조위관측 실측 기온
+        urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+        //조위관측부이 실측 수온
+        urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+      }else if(surfUrl === '서프홀릭울산') {
+        //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+        //유의파고
+        //없은 다른 api 찾아야 함
+        //조위관측 풍향/풍속
+        urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+        //해수유동관측소 유향/유속
+        urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0063&Date="+today+"&ResultType=json";
+        //조위관측부이 실측 기온
+        urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+        //조위관측부이 실측 수온
+        urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+      }else if(surfUrl === '서프홀릭다대포') {
+        //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+        //유의파고
+        //없은 다른 api 찾아야 함
+        //조위관측 풍향/풍속
+        urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+        //해수유동관측소 유향/유속
+        urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0040&Date="+today+"&ResultType=json";
+        //조위관측부이 실측 기온
+        urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+        //조위관측부이 실측 수온
+        urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0005&Date="+today+"&ResultType=json";
+      }
+
+      switch(surfUrl) {
+        case '부산본점(송정)':  
+          region1 = "TW_0090";
+        break;
+        case '서프홀릭강릉경포':  
+          region1 = "TW_0089";
+        break;
+        case '서프홀릭강릉':  
+          region1 = "TW_0094";
+        break;
+        case '서프홀릭제주월정':  
+          region1 = "KG_0028";
+        break;
+      }
+
+      //지점마다 값 출력(dateType이 같은 종류와 개수가 5개인 경우)
+      if(region1 != "") {
+        for (let index = 0; index < 5; index++) {
+          urls[index] = "http://www.khoa.go.kr/api/oceangrid/"+ dateType1[index] + url2 + api_key2 + "&ObsCode=" + region1 +"&Date="+today+"&ResultType=json";
+          //console.log(urls[index]);
+        }
+        
+        for (let index = 0; index < 5; index++) {
+          fetch(urls[index])
+          .then((response)=>response.json())
+          .then((json) => {
+            //console.log(json);
+            let data_top = json.result.data;
+            let dataLength = data_top.length;
+            
+            if(index == 0){//유의파고
+              dataCurrent[0] = data_top[dataLength-1].wave_height;
+            }else if(index == 1){ //풍향,풍속
+              dataCurrent[1] = data_top[dataLength-1].wind_dir;
+              dataCurrent[2] = data_top[dataLength-1].wind_speed;
+              console.log(data_top[dataLength-1].wind_dir + data_top[dataLength-1].wind_speed);
+            }else if(index == 2){//유속,유향
+              dataCurrent[3] = data_top[dataLength-1].current_direct
+              dataCurrent[4] = data_top[dataLength-1].current_speed
+            }else if(index == 3){//기온
+              dataCurrent[5] = data_top[dataLength-1].air_temp
+            }else if(index == 4){//수온
+              dataCurrent[6] = data_top[dataLength-1].water_temp
+            }
+            // dataCurrent[index] = data_top[dataLength-1]
+            console.log(dataCurrent);
+
+            var html = "";
+            var div = document.createElement("div");
+            div.innerHTML = dataCurrent[index];
+            document.body.appendChild(div);
+            //dataResult(json);
+          })
+          .catch(()=>console.log('fetch에러'));
+        }
+      }
+
+      // -----------------------------------------------
+      // fetch(urls[0])
+      // .then((response)=>response.json())
+      // .then((json) => {
+      //   //dataResult(json);
+      //   console.log(json);
+      // })
+      // .then((data)=> console.log(data));
+      
+      //dataCurrent = 0;
+      return dataCurrent();
+    }
+    //urlsFun("서프홀릭제주월정");
+
+    //데이터 최신 값
+    function dataResult(data) {
+      let data_top = data.result.data;
+      let dataLength = data_top.length;
+      console.log(data_top[dataLength-1]);
+
+      dataCurrent[index] = data_top[dataLength-1]
+
+      var html = "";
+      var div = document.createElement("div");
+      div.innerHTML = data.result.data[0].wave_height;
+      document.body.appendChild(div);
+
+      // data_top[dataLength-1].wave_height;
+      // console.log(data_top[dataLength-1].wave_height);
+      //유의파고 최신 값
+      // if(dataType[0] === "obsWaveHight"){
+      //   data_top[dataLength-1].wave_height;
+      //   console.log(data_top[dataLength-1].wave_height);
+      // }else if(dataType[1] === "tidalBuWind") {
+      //   data_top[dataLength-1].wave_height;
+      // }else if(dataType[2] === "tideObsWind") {
+      //   data_top[dataLength-1].wave_height;
+      // }else if(dataType[3] === "tidalBu") {
+      //   data_top[dataLength-1].wave_height;
+      // }else if(dataType[4] === "tidalHfRadar"){
+      //   data_top[dataLength-1].wave_height;
+      // }
+
+      
+    }
+
+    //공공API:https://www.data.go.kr/data/15102239/openapi.do#/API%20%EB%AA%A9%EB%A1%9D/getWhBuoyBeach
+    let url2 = "https://apis.data.go.kr/1360000/BeachInfoservice/getWhBuoyBeach?serviceKey=E%2FnPdqd8cZACYHeE%2Bh%2FcNgHWvp4Ln%2BH%2BgB3974M%2BXnUn2F2t60lWQlydLUTILRc02kbF90caKUFq5NOnf1ncJg%3D%3D&pageNo=313&dataType=JSON&beach_num=1&searchTime=202311221300";
+    fetch(url2)
+    .then((response)=>response.json())
+    .then((json) => {
+            console.log(json.response.body.items.item[0].wh + "xn");
+    })
+    .catch(()=>console.log("fetch2 에러"));
+  </script>
+  </body>
 </html>
