@@ -2,10 +2,13 @@ package com.surfholicdb.surfholicdb.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,37 +24,16 @@ public class MainController {
     //@CrossOrigin(origins = "http://localhost:8080", maxAge=3600)
     @RequestMapping("/")
     public String main() {
-        List<String> sea = new ArrayList<>();
-        List<String> date = new ArrayList<>();
-        List<String> future = new ArrayList<>();
-
-
-        //기상청 API
-    
-        //sea = mainService.getSeaInfo();
-        //date = mainService.getDateApi();
-        //future = mainService.getFutureDateApi();
-
-        //mainService.getwindApi();
-
-        //ModelAndView mv = new ModelAndView();
-        //mv.setViewName("main");
         return "main.html";
     }
 
-    @RequestMapping("/seadata")
-    public ModelAndView obsCode(@RequestParam String obsCode) throws IOException {
-        List<String> sea = new ArrayList<>();
-        List<String> date = new ArrayList<>();
-        List<String> future = new ArrayList<>();
-
-        //System.out.println(obsCode);
-        sea = mainService.getSeaInfo(obsCode);
-        //date = mainService.getDateApi();
-        //future = mainService.getFutureDateApi();
-
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("main");
-        return mv;
+    @RequestMapping("/wave")
+    public String wave(@RequestParam HashMap<String,Object> region, ModelMap model) throws IOException, ParseException{
+        HashMap<String,Object> waveApi = mainService.getWaveApi(region);
+        System.out.println(waveApi.toString());
+        model.addAttribute("waveApis",waveApi);
+        model.addAttribute("region",region.get("region"));
+        return "wave";
     }
+
 }

@@ -1,16 +1,13 @@
 package com.surfholicdb.surfholicdb.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+
+import org.json.simple.parser.ParseException;
+import org.springframework.ui.ModelMap;
 
 public interface MainService {
 
-    List<String> getSeaInfo(String obsCode);
-
-    List<String> getDateApi() throws IOException;
-
-    List<String> getFutureDateApi() throws IOException;
-
-    //void getwindApi() throws IOException;
-    
+    HashMap<String, Object> getWaveApi(HashMap<String, Object> region) throws IOException, ParseException;
 }

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <!-- <script src="/js/wave.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <section>
+            <div id="today_wrap">
+                <div id="weather">
+                    <div th:if='${waveApis.sky == "맑음"}'>
+                        <img src=""/>
+                        <p>Sunny</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "구름많음"}'>
+                        <img src=""/>
+                        <p>Cloud</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "흐림"}'>
+                        <img src=""/>
+                        <p>Cloudy</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "비"}'>
+                        <img src=""/>
+                        <p>Rainy</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "비/눈"}'>
+                        <img src=""/>
+                        <p>Rainy/Snow</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "눈"}'>
+                        <img src=""/>
+                        <p>Snow</p>
+                    </div>
+                    <div th:if='${waveApis.sky == "소나기"}'>
+                        <img src=""/>
+                        <p>Shower</p>
+                    </div>
+                    <div id="weather2">
+                        <p>TODAY</p>
+                        <div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="date"></div>
+            </div>
+            
+            <div id="wave_wrap">
+                <div>
+                    <img src=""/>
+                    <p>Current</p>
+                    <p>Waves</p>
+                    <p th:text="${waveApis.wave_height} + 'm'"></p>
+                    <p th:text="${waveApis.air_temp} + &#8451">Air 12</p>
+                    <p th:text="${waveApis.water_temp} + &#8451">Water 10</p>
+                </div>
+
+                <div class="wind_current">
+                    <img src=""/>
+                    <img src=""/>
+                    <p>[[${waveApis.wind_dir}]] &deg;</p>
+                    <p th:text="${waveApis.wind_speed} + 'm/s'"></p>
+                </div>
+                <div class="wind_current">
+                    <img src=""/>
+                    <img src=""/>
+                    <p>[[${waveApis.current_direct}]] &deg;</p>
+                    <p th:text="${waveApis.current_speed} + 'm/s'"></p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="title">Tide</div>
+            <div id="tide_wrap">
+                <div class="tide_picture tide_low">
+                    <img src=""/>
+                    <div>Low</div>
+                </div>
+                <div class="tide_text">
+                    <p></p>
+                    <p th:text="${waveApis.low_code1} + 'cm'"></p>
+                </div>
+                <div class="tide_picture tide_high">
+                    <img src=""/>
+                    <div>High</div>
+                </div>
+                <div class="tide_text">
+                    <p></p>
+                    <p th:text="${waveApis.hl_code1} + 'cm'"></p>
+                </div>
+                <div class="tide_picture tide_low">
+                    <img src=""/>
+                    <div>Low</div>
+                </div>
+                <div class="tide_text">
+                    <p></p>
+                    <p th:text="${waveApis.low_code2} + 'cm'"></p>
+                </div>
+                <div class="tide_picture tide_high">
+                    <img src=""/>
+                    <div>High</div>
+                </div>
+                <div class="tide_text">
+                    <p></p>
+                    <p th:text="${waveApis.hl_code2} + 'cm'"></p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- <iframe src="https://jucode.shop/" style="width: 100%; height:3018px;border:none;"></iframe> -->
+        </section>
+
+        <section th:if='${region == "부산(송정)"}'>
+            <script id="wg_fwdg_208542_100_1700440455527">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=208542" ,"m=100","mw=47","uid=wg_fwdg_208542_100_1700440455527" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,PERPW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,APCP1s,SLP,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        window.onload = function(){
+            let date = document.getElementById("date");
+
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = ('0' + (today.getMonth() +1)).slice(-2);
+            var day = ('0' + today.getDate()).slice(-2);
+            var hours = ('0' + today.getHours()).slice(-2); 
+            var minutes = ('0' + today.getMinutes()).slice(-2); 
+
+            var dateResult = year + "." + month + "." + day + "." + hours + ":" + minutes;
+            console.log(date);
+            date.innerText = dateResult;
+
+            //조석
+            var tideDay = [];
+            tideDay[0] = /*[[${waveApis.low_time1}]]*/;
+            tideDay[1] = /*[[${waveApis.low_time2}]]*/;
+            tideDay[2] = /*[[${waveApis.hl_time1}]]*/;
+            tideDay[3] = /*[[${waveApis.hl_time2}]]*/;
+            for (let index = 0; index < 4; index++) {
+                var tideDate = tideDay[index].substring(11, 16);
+                var tideDateTag = document.getElementsByClassName("tide_text");
+                //console.log(tideDate[0].firstChild.nextSibling);
+                tideDateTag[index].firstChild.nextSibling.innerText = tideDate;
+            }
+        }
+        /*]]>*/
+    </script>
+</body>
+</html>
