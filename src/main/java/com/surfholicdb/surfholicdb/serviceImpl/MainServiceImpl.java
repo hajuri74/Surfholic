@@ -145,7 +145,6 @@ public class MainServiceImpl implements MainService{
     private HashMap<String, Object> resultApi(String [] url) throws IOException, ParseException {
         HashMap<String, Object> waveApi = new HashMap<String, Object>();
 
-            
             if(url[0] != null){
                 HttpURLConnection con = (HttpURLConnection) new URL(url[0]).openConnection();
                 con.setRequestMethod("GET");

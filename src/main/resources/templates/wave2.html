@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/wave.css">
     <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/js/apikey.js"></script>
     <!-- <script src="/js/wave.js"></script> -->
     <title>Document</title>
 </head>
@@ -46,99 +47,188 @@
             urlsFun(region);
         }
 
+        
         function urlsFun(surfUrl) {
-            let region1 = "";
-            var url2 = "/search.do?ServiceKey=";
+            const api_key1 = config.apikey1;
+            const api_key2 = config.apikey2;
+            
+            var today = new Date();
 
-            //let dateType = ["obsWaveHight", "tidalBuWind","tidalBu", "tideObsWind", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
+            var year = today.getFullYear();
+            var month = ('0' + (today.getMonth() + 1)).slice(-2);
+            var day = ('0' + today.getDate()).slice(-2);
+            var todayFormat = year+month+day;
+            var todayWh = year+month+day; //유의파고 날짜
+
+            var hours = ('0' + today.getHours()).slice(-2); 
+            var minutes = ('0' + today.getMinutes()).slice(-2);
+            var seconds = ('0' + today.getSeconds()).slice(-2);
+            var timeFormat = hours + ':' + minutes  + ':' + seconds;
+
+            //유의파고 날짜 & 시간
+            var base_time = "0000";
+            if(timeFormat>=2 && timeFormat<5){
+                base_time = "0200";
+            }else if(timeFormat>=5 && timeFormat<8){
+                base_time = "0500";
+            }else if(timeFormat>=8 && timeFormat<11){
+                base_time = "0800";
+            }else if(timeFormat>=11 && timeFormat<14){
+                base_time = "1100";
+            }else if(timeFormat>=14 && timeFormat<17){
+                base_time = "1400";
+            }else if(timeFormat>=17 && timeFormat<20){
+                base_time = "1700";
+            }else if(timeFormat>=20 && timeFormat<23){
+                base_time = "2000";
+            }else{
+                base_time = "2300";
+                var yesterday = new Date(today.setDate(today.getDate() -1));
+                console.log(yesterday);
+                todayWh = yesterday.getFullYear() + ('0' + (yesterday.getMonth() + 1)).slice(-2) + ('0' + yesterday.getDate()).slice(-2);
+            }
+
+            let urls = [];
             if(surfUrl === '부산본점(송정)'){
-                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
-                //조위관측 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=100&ny=76";
+                console.log(urls);
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date="+todayFormat+"&ResultType=json";
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
+                //기온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0005&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭포항'){
-                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
-                //조위관측 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+                
             }else if(surfUrl === '서프홀릭강릉'){
-                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
-                //조위관측 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+                
             }else if(surfUrl === '서프홀릭강릉경포'){
-                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
-                //조위관측 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+                
             }else if(surfUrl === '서프홀릭울산') {
-                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0063&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+            
             }else if(surfUrl === '서프홀릭다대포') {
-                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0040&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0005&Date="+today+"&ResultType=json";
+                
             }else if(surfUrl === '서프홀릭제주월정') {
-                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
-                //유의파고
-                //없은 다른 api 찾아야 함
-                //조위관측 풍향/풍속
-                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
-                //해수유동관측소 유향/유속
-                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0040&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 기온
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
-                //조위관측부이 실측 수온
-                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0005&Date="+today+"&ResultType=json";
+                
             }
         }
 
-        
+        function resultApi(urls) {
+            urls.forEach((url,index) => {
+                if(url != null){
+                    fetch(url)
+                    .then((response)=>response.json())
+                    .then((json)=>{
+                        console.log(json);
+                        addNode(json,index);
+                    });
+                }else{
+                    console.log("없음");
+                }
+            });
+        }
+
+        function addNode(json,index) {
+            
+            if(index == 0){
+                let dataWh = json.response.body.items.item;
+                if(dataWh != null){
+                    var sky = "";
+                    var sky1 = dataWh[5].fcstValue; //날씨1
+                    var sky2 = dataWh[6].fcstValue; //날씨2
+                    var waveHe = dataWh[8].fcstValue; //파고
+                    if(sky1=== "1" && sky2 === "0"){
+                        sky = "맑음";
+                    }else if(sky1==="3" && sky2 === "0"){
+                        sky = "구름많음";
+                    }else if(sky1==="4" && sky2 === "0"){
+                        sky = "흐림";
+                    }else if(sky2==="1"){
+                        sky = "비";
+                    }else if(sky2==="2"){
+                        sky = "비/눈";
+                    }else if(sky2==="3"){
+                        sky = "눈";
+                    }else if(sky2==="4"){
+                        sky = "소나기";
+                    }
+                    console.log(sky + waveHe);
+                }
+            }
+
+            if(index == 1){
+                let data = json.result.data;
+                if(data != null){
+                    let dataLast = data[data.length -1];
+                    let wind_speed = dataLast.wind_speed;
+                    let wind_dir = dataLast.wind_dir;
+                    
+                    console.log(wind_speed + wind_dir);
+                }
+            }
+
+            if(index == 2){
+                let data = json.result.data;
+                if(data != null){
+                    let dataLast = data[data.length -1];
+                    let current_speed = dataLast.current_speed;
+                    let current_direct = dataLast.current_direct;
+                    
+                    console.log(current_speed + current_direct);
+                }
+            }
+            
+            if(index == 3){
+                let data = json.result.data;
+                if(data != null){
+                    let dataLast = data[data.length -1];
+                    let air_temp = dataLast.air_temp;
+                    
+                    console.log(dataLast + air_temp);
+                }
+            }
+
+            if(index == 4){
+                let data = json.result.data;
+                if(data != null){
+                    let dataLast = data[data.length -1];
+                    let water_temp = dataLast.water_temp;
+                    
+                    console.log(dataLast + water_temp);
+                }
+            }
+
+            if(index == 5){
+                let data = json.result.data;
+                if(data != null){
+                    let dataLast1 = data[0];
+                    let dataLast2 = data[1];
+                    let dataLast3 = data[2];
+                    let dataLast4 = data[3];
+                    let low_code1 = dataLast1.tph_level;
+                    let low_time1 = dataLast1.tph_time;
+                    let hl_code1 = dataLast2.tph_level;
+                    let hl_time1 = dataLast2.tph_time;
+                    let low_code2 = dataLast3.tph_level;
+                    let low_time2 = dataLast3.tph_time;
+                    let hl_code2 = dataLast4.tph_level;
+                    let hl_time2 = dataLast4.tph_time;
+                    
+                    console.log(low_code1 + low_time1 + hl_code1 + hl_time1);
+                }
+            }
+
+            var html = "";
+            var div = document.createElement("div");
+            div.innerHTML = "dd";
+            document.body.appendChild(div);
+        }
     </script>
 </body>
 </html>
