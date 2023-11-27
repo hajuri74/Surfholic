@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/wave.css">
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <!-- <script src="/js/wave.js"></script> -->
+    <title>Document</title>
+</head>
+<body>
+    <div id="wrap">
+        <section>
+            <div id="today_wrap">
+                <div id="weather">
+                    <div>
+                        <img src=""/>
+                        <p>Sunny</p>
+                    </div>
+                    <div id="weather2">
+                        <p>TODAY</p>
+                        <div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="date"></div>
+            </div>
+            
+            
+        </section>
+
+
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URL(location.href).searchParams;
+            let region = urlParams.get("str_region");
+    
+            console.log(region);
+            urlsFun(region);
+        }
+
+        function urlsFun(surfUrl) {
+            let region1 = "";
+            var url2 = "/search.do?ServiceKey=";
+
+            //let dateType = ["obsWaveHight", "tidalBuWind","tidalBu", "tideObsWind", "tidalHfRadar", "tidalBuAirTemp", "tideObsAirTemp", "tidalBuTemp", "tideObsTemp"];
+            if(surfUrl === '부산본점(송정)'){
+                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
+                //조위관측 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭포항'){
+                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
+                //조위관측 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭강릉'){
+                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
+                //조위관측 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭강릉경포'){
+                //obsWaveHight" ,"tidalBuWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0071&Date="+today+"&ResultType=json";
+                //조위관측 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0091&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=TW_0090&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭울산') {
+                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0063&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0020&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭다대포') {
+                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0040&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0005&Date="+today+"&ResultType=json";
+            }else if(surfUrl === '서프홀릭제주월정') {
+                //obsWaveHight" ,"tideObsWind", "tidalHfRadar", "tideObsAirTemp", "tideObsTemp"
+                //유의파고
+                //없은 다른 api 찾아야 함
+                //조위관측 풍향/풍속
+                urls[0] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+                //해수유동관측소 유향/유속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key2 + "&ObsCode=HF_0040&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 기온
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0056&Date="+today+"&ResultType=json";
+                //조위관측부이 실측 수온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key2 + "&ObsCode=DT_0005&Date="+today+"&ResultType=json";
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

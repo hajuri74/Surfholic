@@ -36,4 +36,9 @@ public class MainController {
         return "wave";
     }
 
+    @RequestMapping("/wave2")
+    public String wave2(){
+        return "wave2";
+    }
+
 }

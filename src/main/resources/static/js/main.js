@@ -17,7 +17,6 @@ window.onload = function() {
     getApi();
 
     //api key
-    
 
     let url = ""
     //국립해양

@@ -1,0 +1,22 @@
+@charset "utf-8";
+*{margin:0; padding:0;}
+#wrap {
+    width: 1167px;
+    margin: 0 auto;
+    background-color: floralwhite;
+}
+
+#today_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#weather {
+
+}
+
+/*wave_wrap 부분*/
+#wave_wrap>div:nth-of-type(1)>div{
+    
+} 

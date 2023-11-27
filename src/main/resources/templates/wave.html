@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/wave.css">
     <script src="//code.jquery.com/jquery-latest.min.js"></script>
     <!-- <script src="/js/wave.js"></script> -->
     <title>Document</title>
@@ -17,14 +17,14 @@
                         <img src=""/>
                         <p>Sunny</p>
                     </div>
-                    <div th:if='${waveApis.sky == "구름많음"}'>
+                    <div th:if='${waveApis.sky == "구름많음" || waveApis.sky == "흐림"}'>
                         <img src=""/>
                         <p>Cloud</p>
                     </div>
-                    <div th:if='${waveApis.sky == "흐림"}'>
+                    <!-- <div th:if='${waveApis.sky == "흐림"}'>
                         <img src=""/>
                         <p>Cloudy</p>
-                    </div>
+                    </div> -->
                     <div th:if='${waveApis.sky == "비"}'>
                         <img src=""/>
                         <p>Rainy</p>
@@ -57,7 +57,7 @@
             
             <div id="wave_wrap">
                 <div>
-                    <img src=""/>
+                    <img src="/images/image1.png"/>
                     <p>Current</p>
                     <p>Waves</p>
                     <p th:text="${waveApis.wave_height} + 'm'"></p>
@@ -127,6 +127,96 @@
                 (function (window, document) {
                   var loader = function () {
                     var arg = ["s=208542" ,"m=100","mw=47","uid=wg_fwdg_208542_100_1700440455527" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,PERPW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,APCP1s,SLP,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "강릉망상"}'>
+            <script id="wg_fwdg_1201403_3_1701051162254">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=1201403" ,"m=3","mw=47","uid=wg_fwdg_1201403_3_1701051162254" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,MWINDSPD,SMER,HTSGW,PERPW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,TCDC,APCP1s,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "강릉경포"}'>
+            <script id="wg_fwdg_1199670_45_1701060122200">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=1199670" ,"m=45","mw=84","uid=wg_fwdg_1199670_45_1701060122200" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,SWELL2,SWDIR2,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCPs,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "포항"}'>
+            <script id="wg_fwdg_208540_100_1701060477039">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=208540" ,"m=100","mw=84","uid=wg_fwdg_208540_100_1701060477039" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=1" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "울산"}'>
+            <script id="wg_fwdg_654165_100_1701060676171">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=654165" ,"m=100","mw=84","uid=wg_fwdg_654165_100_1701060676171" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "다대포"}'>
+            <script id="wg_fwdg_208543_100_1701060819023">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=208543" ,"m=100","mw=84","uid=wg_fwdg_208543_100_1701060819023" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];
+                    var script = document.createElement("script");
+                    var tag = document.getElementsByTagName("script")[0];
+                    script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
+                    tag.parentNode.insertBefore(script, tag);
+                  };
+                  window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+                })(window, document);
+            </script>
+        </section>
+
+        <section th:if='${region == "제주월정"}'>
+            <script id="wg_fwdg_208548_100_1701061013006">
+                (function (window, document) {
+                  var loader = function () {
+                    var arg = ["s=208548" ,"m=100","mw=84","uid=wg_fwdg_208548_100_1701061013006" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=1" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,APCP1s,SLP,RATING"];
                     var script = document.createElement("script");
                     var tag = document.getElementsByTagName("script")[0];
                     script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));
