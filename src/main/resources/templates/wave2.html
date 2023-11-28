@@ -20,7 +20,7 @@
                     </div>
                     <div id="weather_con2">
                         <p>TODAY</p>
-                        <div>
+                        <div id="weather_star">
                             <img src="/images/image2-2.png"/>
                             <img src="/images/image2-2.png"/>
                             <img src="/images/image2-2.png"/>
@@ -51,7 +51,6 @@
                 <div class="wind_current wind_cur2">
                     <img src="/images/image2-4.png"/>
                     <img src="/images/image2-5.png"/>
-                    <img src=""/>
                     <p>데이터</p>
                     <p>데이터</p>
                 </div>
@@ -119,6 +118,10 @@
             var seconds = ('0' + today.getSeconds()).slice(-2);
             var timeFormat = hours + ':' + minutes  + ':' + seconds;
 
+            //현재시간
+            const current_time = document.getElementById("date").innerText = year+"."+month+"."+day + " " + hours + ':' + minutes;
+
+
             //유의파고 날짜 & 시간
             var base_time = "0000";
             if(timeFormat>=2 && timeFormat<5){
@@ -146,9 +149,9 @@
             if(surfUrl === '부산본점(송정)'){
                 //유의파고&날씨
                 urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=100&ny=76";
-                console.log(urls);
                 //풍향/풍속
                 urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date="+todayFormat+"&ResultType=json";
+                console.log(urls[1]);
                 //유속/유향
                 urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
                 //기온
@@ -227,80 +230,142 @@
             //ㅇㅇㅇ
             if(index == 0){
                 let dataWh = json.response.body.items.item;
-                let dataWeather1 = document.getElementById("data-weather1");
-                let dataWeather2 = document.getElementById("data-weather2");
+                let dataWeather = document.getElementById("data-weather");
+                let weather_star = document.getElementById("weather_star");
+                let wave_ht = document.getElementsByClassName("wave_ht")[0];
                 if(dataWh != null){
                     var sky = "";
                     var sky1 = dataWh[5].fcstValue; //날씨1
                     var sky2 = dataWh[6].fcstValue; //날씨2
                     var waveHe = dataWh[8].fcstValue; //파고
-                    if(sky1=== "1" && sky2 === "0"){
+                    if(sky1 === "1" && sky2 === "0"){
                         sky = "맑음";
-                        dataWeather1.img = "/images/";
+                        dataWeather.children[0].src = "/images/image1-1.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
                     }else if(sky1==="3" && sky2 === "0"){
+                        dataWeather.children[0].src = "/images/image1-2.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
                         sky = "구름많음";
                     }else if(sky1==="4" && sky2 === "0"){
+                        dataWeather.children[0].src = "/images/image1-3.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
                         sky = "흐림";
                     }else if(sky2==="1"){
+                        dataWeather.children[0].src = "/images/image1-4.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
+                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비";
                     }else if(sky2==="2"){
+                        dataWeather.children[0].src = "/images/image1-5.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
+                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비/눈";
                     }else if(sky2==="3"){
+                        dataWeather.children[0].src = "/images/image1-6.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
+                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "눈";
                     }else if(sky2==="4"){
+                        dataWeather.children[0].src = "/images/image1-7.png";
+                        weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
                         sky = "소나기";
                     }
-                    var test = dataWeather.innerHTML = sky;
-                    console.log(sky + waveHe);
-                    console.log(test);
+                    var test = dataWeather.children[1].innerText = sky;
+                    wave_ht.children[3].innerText = waveHe;
                 }
             }
 
-            if(index == 1){
+            if(index == 1){ //풍향&풍속
                 let data = json.result.data;
                 if(data != null){
+                    let wind_cur1 = document.getElementsByClassName("wind_cur1")[0];
                     let dataLast = data[data.length -1];
                     let wind_speed = dataLast.wind_speed;
                     let wind_dir = dataLast.wind_dir;
-                    
-                    console.log(wind_speed + wind_dir);
+                    var deg = degFun(wind_dir);
+                    //wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    var rotate = 230 + Number(wind_dir);
+                    var scrollPosition = window.pageYOffset;
+                    var elementPosition = wind_cur1.children[1].offsetTop;
+                    if (scrollPosition >= elementPosition) {
+                        wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    } else {
+                        wind_cur1.children[1].style.transform = "rotate(230deg)";
+                    }
+
+                    window.addEventListener('scroll', function() {
+                        var rotate = 230 + Number(wind_dir);
+                        var scrollPosition = window.pageYOffset;
+
+                        var elementPosition = wind_cur1.children[1].offsetTop;
+
+                        if (scrollPosition >= elementPosition) {
+                            wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                        } else {
+                            wind_cur1.children[1].style.transform = "rotate(230deg)";
+                        }
+                    });
+                    wind_cur1.children[2].innerText = wind_dir + "° " + deg;
+                    wind_cur1.children[3].innerText = wind_speed + "m/s";
                 }
             }
 
-            if(index == 2){
+            if(index == 2){//유속&유향
                 let data = json.result.data;
                 if(data != null){
+                    let wind_cur2 = document.getElementsByClassName("wind_cur2")[0];
                     let dataLast = data[data.length -1];
                     let current_speed = dataLast.current_speed;
                     let current_direct = dataLast.current_direct;
-                    
-                    console.log(current_speed + current_direct);
+                    var rotate = 230 + Number(current_direct);
+                    wind_cur2.children[1].style.transform = "rotate("+rotate+"deg)";
+                    var deg = degFun(current_direct);
+                    wind_cur2.children[2].innerText = current_direct + "° " + deg;
+                    wind_cur2.children[3].innerText = current_speed + "m/s";
                 }
             }
             
-            if(index == 3){
+            if(index == 3){//기온
                 let data = json.result.data;
                 if(data != null){
+                    let wave_ht = document.getElementsByClassName("wave_ht")[0];
                     let dataLast = data[data.length -1];
                     let air_temp = dataLast.air_temp;
                     
-                    console.log(dataLast + air_temp);
+                    wave_ht.children[4].innerText = "Air " + air_temp + "°C";
                 }
             }
 
             if(index == 4){
                 let data = json.result.data;
                 if(data != null){
+                    let wave_ht = document.getElementsByClassName("wave_ht")[0];
                     let dataLast = data[data.length -1];
                     let water_temp = dataLast.water_temp;
                     
-                    console.log(dataLast + water_temp);
+                    wave_ht.children[5].innerText =  "Water " + water_temp + "°C";
                 }
             }
 
             if(index == 5){
                 let data = json.result.data;
                 if(data != null){
+                    let tide_text = document.getElementsByClassName("tide_text");
                     let dataLast1 = data[0];
                     let dataLast2 = data[1];
                     let dataLast3 = data[2];
@@ -314,14 +379,39 @@
                     let hl_code2 = dataLast4.tph_level;
                     let hl_time2 = dataLast4.tph_time;
                     
-                    console.log(low_code1 + low_time1 + hl_code1 + hl_time1);
+                    tide_text[0].children[0].innerText = low_time1.substr(11,5);
+                    tide_text[0].children[1].innerText = low_code1 + "cm";
+                    tide_text[1].children[0].innerText = hl_time1.substr(11,5);
+                    tide_text[1].children[1].innerText = hl_code1 + "cm";
+                    tide_text[2].children[0].innerText = low_time2.substr(11,5);
+                    tide_text[2].children[1].innerText = low_code2 + "cm";
+                    tide_text[3].children[0].innerText = hl_time2.substr(11,5);
+                    tide_text[3].children[1].innerText = hl_code2 + "cm";
                 }
             }
 
-            var html = "";
-            var div = document.createElement("div");
-            div.innerHTML = "dd";
-            document.body.appendChild(div);
+        }
+
+        function degFun(deg){
+            if(0 == deg){
+                return "North";
+            }else if(0<deg && deg<90){
+                return "North East";
+            }else if(90 == deg){
+                return "East";
+            }else if(90<deg && deg<180){
+                return "South East";
+            }else if(180 == deg){
+                return "South";
+            }else if(180<deg && deg<270){
+                return "South West";
+            }else if(270 == deg){
+                return "West";
+            }else if(270<deg && deg<360){
+                return "North West";
+            }else if(360==deg){
+                return "North";
+            }
         }
     </script>
 </body>
