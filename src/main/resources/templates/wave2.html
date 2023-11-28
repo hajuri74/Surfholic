@@ -14,29 +14,83 @@
         <section>
             <div id="today_wrap">
                 <div id="weather">
-                    <div>
-                        <img src=""/>
-                        <p>Sunny</p>
+                    <div id="data-weather">
+                        <img id="data-weather1" src="/images/image1-1.png"/>
+                        <p id="data-weather2"></p>
                     </div>
-                    <div id="weather2">
+                    <div id="weather_con2">
                         <p>TODAY</p>
                         <div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
+                            <img src="/images/image2-2.png"/>
+                            <img src="/images/image2-2.png"/>
+                            <img src="/images/image2-2.png"/>
+                            <img src="/images/image2-2.png"/>
+                            <img src="/images/image2-2.png"/>
                         </div>
                     </div>
                 </div>
-                <div id="date"></div>
+                <div id="date">2023.11.28 15:00</div>
             </div>
             
-            
+            <div id="wave_wrap">
+                <div class="wave_ht">
+                    <img src="/images/image1.png"/>
+                    <p>Current</p>
+                    <p>Waves</p>
+                    <p>데이터</p>
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+
+                <div class="wind_current wind_cur1">
+                    <img src="/images/image2-3.png"/>
+                    <img src="/images/image2-5.png"/>
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+                <div class="wind_current wind_cur2">
+                    <img src="/images/image2-4.png"/>
+                    <img src="/images/image2-5.png"/>
+                    <img src=""/>
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+            </div>
         </section>
 
-
-    </div>
+        <section>
+            <div class="title">Tide</div>
+            <div id="tide_wrap">
+                <div class="tide_picture tide_low">
+                    <img src="/images/image3-1.png"/>
+                </div>
+                <div class="tide_text">
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+                <div class="tide_picture tide_high">
+                    <img src="/images/image3-2.png"/>
+                </div>
+                <div class="tide_text">
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+                <div class="tide_picture tide_low">
+                    <img src="/images/image3-1.png"/>
+                </div>
+                <div class="tide_text">
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+                <div class="tide_picture tide_high">
+                    <img src="/images/image3-2.png"/>
+                </div>
+                <div class="tide_text">
+                    <p>데이터</p>
+                    <p>데이터</p>
+                </div>
+            </div>
+        </section>
 
     <script>
         window.onload = function() {
@@ -105,9 +159,44 @@
                 urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0005&Date=" + todayFormat + "&ResultType=json";
                 resultApi(urls);
             }else if(surfUrl === '서프홀릭포항'){
-                
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=102&ny=96";
+                console.log(urls);
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
+
+                //기온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0901&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭강릉'){
-                
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=95&ny=129";
+                console.log(urls);
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date=" + todayFormat + "&ResultType=json";
+
+                //기온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
             }else if(surfUrl === '서프홀릭강릉경포'){
                 
             }else if(surfUrl === '서프홀릭울산') {
@@ -138,6 +227,8 @@
             
             if(index == 0){
                 let dataWh = json.response.body.items.item;
+                let dataWeather1 = document.getElementById("data-weather1");
+                let dataWeather2 = document.getElementById("data-weather2");
                 if(dataWh != null){
                     var sky = "";
                     var sky1 = dataWh[5].fcstValue; //날씨1
@@ -145,6 +236,7 @@
                     var waveHe = dataWh[8].fcstValue; //파고
                     if(sky1=== "1" && sky2 === "0"){
                         sky = "맑음";
+                        dataWeather1.img = "/images/";
                     }else if(sky1==="3" && sky2 === "0"){
                         sky = "구름많음";
                     }else if(sky1==="4" && sky2 === "0"){
@@ -158,7 +250,9 @@
                     }else if(sky2==="4"){
                         sky = "소나기";
                     }
+                    var test = dataWeather.innerHTML = sky;
                     console.log(sky + waveHe);
+                    console.log(test);
                 }
             }
 

@@ -12,11 +12,161 @@
     justify-content: space-between;
 }
 
-#weather {
+#weather{display: flex;}
 
+#weather>div:nth-of-type(1){
+    text-align: center; 
+    background-color:aqua;
+    margin-right:16px;
+} 
+
+#weather>div>img{
+    width: 73px;
 }
 
-/*wave_wrap 부분*/
-#wave_wrap>div:nth-of-type(1)>div{
-    
-} 
+#weather>div:nth-of-type(1)>p{
+    font-size:20px;
+}
+
+#weather_con2>p{
+    font-size: 60px;
+    font-weight: 900;
+}
+
+#date {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#wave_wrap{display: flex; margin-top:40px;}
+
+.wave_ht{
+    position: relative;
+    top:0;
+}
+
+.wave_ht>p:nth-of-type(1) {
+    font-size: 36px;
+    font-weight: 800;
+    position: absolute;
+    top: 64px;
+    left:205px;
+}
+
+.wave_ht>p:nth-of-type(2) {
+    font-size: 23px;
+    font-weight: 800;
+    position: absolute;
+    top: 105px;
+    left:296px;
+}
+
+.wave_ht>p:nth-of-type(3) {
+    font-size: 50px;
+    font-weight: 800;
+    position: absolute;
+    top: 144px;
+    left: 255px;
+}
+
+.wave_ht>p:nth-of-type(4) {
+    font-size: 30px;
+    font-weight: 600;
+    color:#006BD6;
+    position: absolute;
+    top: 258px;
+    left: 264px;
+}
+
+.wave_ht>p:nth-of-type(5) {
+    font-size: 30px;
+    font-weight: 600;
+    color:#fff;
+    position: absolute;
+    top: 310px;
+    left:220px;
+}
+
+.wind_current{
+    position: relative;
+    top:0;
+    height: 294px;
+    margin-top: 74px;
+}
+
+.wind_cur1{
+    padding:0 66px;
+    overflow: hidden;
+}
+
+.wind_cur1>img:nth-of-type(2){
+    position: absolute;
+    top: 28%;
+    left: 32%;
+}
+
+.wind_cur2>img:nth-of-type(2){
+    position: absolute;
+    top: 28%;
+    left: 24%;
+}
+
+.wind_current{
+    position: relative;
+    top:0;
+}
+
+#wave_wrap>.wind_cur1>p:nth-of-type(1){
+    font-size: 16px;
+    position:absolute;
+    bottom: 72px;
+    left:50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+#wave_wrap>.wind_cur2>p:nth-of-type(1) {
+    font-size: 16px;
+    position:absolute;
+    bottom: 72px;
+    left:50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+#wave_wrap>.wind_cur1>p:nth-of-type(2){
+    font-size: 20px;
+    position:absolute;
+    bottom: 50px;
+    left:50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+#wave_wrap>.wind_cur2>p:nth-of-type(2){
+    font-size: 20px;
+    position:absolute;
+    bottom: 50px;
+    left:50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+/* Tide 영역 */
+.title {
+    font-size: 50px;
+    font-weight: 900;
+    margin-top: 85px;
+}
+
+#tide_wrap {
+    display: flex;
+}
+
+.tide_text>p{
+    font-size: 20px;
+    font-weight: 900;
+    margin: 25px 43px 0 32px;
+    text-align: center;
+}
+

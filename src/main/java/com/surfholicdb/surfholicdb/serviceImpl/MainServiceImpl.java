@@ -94,10 +94,15 @@ public class MainServiceImpl implements MainService{
             return resultApi(url);
         }else if(region.get("region").equals("강릉망상")){
             waveHightWeather = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=95&ny=129";
+
             tidalBuWind = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key + "&ObsCode=TW_0094&Date=" + today + "&ResultType=json";
+
             tidalBu = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key + "&ObsCode=TW_0094&Date=" + today + "&ResultType=json";
+
             airTemp = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key + "&ObsCode=TW_0094&Date=" + today + "&ResultType=json";
+            
             waveTemp = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key + "&ObsCode=TW_0094&Date=" + today + "&ResultType=json";
+
             tideObsPreTab = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key + "&ObsCode=SO_0733&Date=" + today + "&ResultType=json";
             String [] url = {waveHightWeather,tidalBuWind,tidalBu,airTemp,waveTemp,tideObsPreTab,regionResult};
             return resultApi(url);
@@ -112,11 +117,17 @@ public class MainServiceImpl implements MainService{
             return resultApi(url);
         }else if(region.get("region").equals("포항")){
             waveHightWeather = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=102&ny=96";
+
             tidalBuWind = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key + "&ObsCode=DT_0091&Date=" + today + "&ResultType=json";
+
             tidalBu = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key + "&ObsCode=HF_0071&Date=" + today+hours+ "&ResultType=json";
+
             airTemp = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key + "&ObsCode=DT_0091&Date=" + today + "&ResultType=json";
+
             waveTemp = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key + "&ObsCode=DT_0091&Date=" + today + "&ResultType=json";
+
             tideObsPreTab = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key + "&ObsCode=DT_0901&Date=" + today + "&ResultType=json";
+
             String [] url = {waveHightWeather,tidalBuWind,tidalBu,airTemp,waveTemp,tideObsPreTab,regionResult};
             return resultApi(url);
         }else if(region.get("region").equals("울산")){
