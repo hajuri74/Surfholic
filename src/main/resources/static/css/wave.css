@@ -3,8 +3,7 @@
 #wrap {
     width: 1167px;
     margin: 0 auto;
-    background-color: floralwhite;
-    margin-top: 2000px;
+    margin-top: 150px;
 }
 
 #today_wrap {
@@ -17,7 +16,6 @@
 
 #weather>div:nth-of-type(1){
     text-align: center; 
-    background-color:aqua;
     margin-right:16px;
 } 
 
@@ -97,7 +95,6 @@
 
 .wind_cur1{
     padding:0 66px;
-    overflow: hidden;
 }
 
 .wind_cur1>img:nth-of-type(2){
@@ -125,7 +122,7 @@
 #wave_wrap>.wind_cur1>p:nth-of-type(1){
     font-size: 16px;
     position:absolute;
-    bottom: 72px;
+    bottom: -72px;
     left:50%;
     transform: translateX(-50%);
     font-weight: bold;
@@ -134,7 +131,7 @@
 #wave_wrap>.wind_cur2>p:nth-of-type(1) {
     font-size: 16px;
     position:absolute;
-    bottom: 72px;
+    bottom: -72px;
     left:50%;
     transform: translateX(-50%);
     font-weight: bold;
@@ -143,7 +140,7 @@
 #wave_wrap>.wind_cur1>p:nth-of-type(2){
     font-size: 20px;
     position:absolute;
-    bottom: 50px;
+    bottom: -50px;
     left:50%;
     transform: translateX(-50%);
     font-weight: bold;
@@ -152,7 +149,7 @@
 #wave_wrap>.wind_cur2>p:nth-of-type(2){
     font-size: 20px;
     position:absolute;
-    bottom: 50px;
+    bottom: -50px;
     left:50%;
     transform: translateX(-50%);
     font-weight: bold;
@@ -176,3 +173,44 @@
     text-align: center;
 }
 
+/* 버튼 */
+#api_btn {
+    margin: 108px auto 80px;
+    width: 206px;
+    height: 96px;
+    background-color: #9E3737;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+/*  */
+.title2 {
+    font-size: 51px;
+    font-weight: 900;
+    margin: 200px 0 15px 0;
+}
+
+#wind_guru {
+    margin-bottom: 30px;
+}
+
+@media all and (max-width:768px) {
+    #weather>div>img {
+        width: 52px;
+    }
+
+    #weather_con2>p:nth-of-type(1){
+        font-size: 26px;
+    }
+
+    #weather_star img{
+        width: 19px;
+    }
+
+    
+}

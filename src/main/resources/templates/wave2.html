@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="date">2023.11.28 15:00</div>
+                <div id="date"></div>
             </div>
             
             <div id="wave_wrap">
@@ -37,9 +37,9 @@
                     <img src="/images/image1.png"/>
                     <p>Current</p>
                     <p>Waves</p>
-                    <p>데이터</p>
-                    <p>데이터</p>
-                    <p>데이터</p>
+                    <p></p>
+                    <p></p>
+                    <p></p>
                 </div>
 
                 <div class="wind_current wind_cur1">
@@ -89,18 +89,133 @@
                     <p>데이터</p>
                 </div>
             </div>
+
+            <p id="api_btn">레저활동신고</p>
+        </section>
+
+        <p class="title2">Show Forecast</p>   
+        <section id="wind_guru">
+            <script id="wg_fwdg_208542_100_1700440455527"></script>
         </section>
 
     <script>
+        const urlParams = new URL(location.href).searchParams;
+        let region = urlParams.get("str_region");
+
         window.onload = function() {
-            const urlParams = new URL(location.href).searchParams;
-            let region = urlParams.get("str_region");
-    
-            console.log(region);
             urlsFun(region);
         }
+        const windguruSec = document.getElementById("wind_guru").children[0];
+        if(region === '부산본점(송정)'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=208542" ,"m=100","mw=47","uid=wg_fwdg_208542_100_1700440455527" ,'
+                wind_grueTag +=  '"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,'
+                wind_grueTag +=  '"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,PERPW,'
+                wind_grueTag +=  'DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,APCP1s,SLP,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.'
+                wind_grueTag +=  'attachEvent("onload", loader);'
+                wind_grueTag +=  '})(window, document); ';
+            
+            windguruSec.setAttribute("id","wg_fwdg_208542_100_1700440455527");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭강릉'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=1201403" ,"m=3","mw=47","uid=wg_fwdg_1201403_3_1701051162254" ,'
+                wind_grueTag +=  '"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,'
+                wind_grueTag +=  '"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,MWINDSPD,SMER,HTSGW,PERPW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMP,TMPE,CDC,TCDC,APCP1s,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload",loader);'
+                wind_grueTag +=  '})(window, document); ';
+            
+            windguruSec.setAttribute("id","wg_fwdg_1201403_3_1701051162254");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭강릉경포'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=1199670" ,"m=45","mw=84","uid=wg_fwdg_1199670_45_1701060122200" ,'
+                wind_grueTag +=  '"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=3" ,'
+                wind_grueTag +=  '"vt=forecasts" ,"lng=en" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,SWELL2,SWDIR2,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCPs,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload",loader);'
+                wind_grueTag +=  '})(window, document); ';
+            
+            windguruSec.setAttribute("id","wg_fwdg_1199670_45_1701060122200");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭포항'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=208540" ,"m=100","mw=84","uid=wg_fwdg_208540_100_1701060477039" ,"wj=ms" ,'
+                wind_grueTag +=  '"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,'
+                wind_grueTag +=  '"lng=en" ,"idbs=1" ,"ts=1" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);'
+                wind_grueTag +=  '})(window, document);'
+            
+            windguruSec.setAttribute("id","wg_fwdg_208540_100_1701060477039");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭울산'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=654165" ,"m=100","mw=84","uid=wg_fwdg_654165_100_1701060676171" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);'
+                wind_grueTag +=  '})(window, document);'
+            
+            windguruSec.setAttribute("id","wg_fwdg_654165_100_1701060676171");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭다대포'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=208543" ,"m=100","mw=84","uid=wg_fwdg_208543_100_1701060819023" ,"wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=2" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,TCDC,APCP1s,SLP,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);'
+                wind_grueTag +=  '})(window, document);'
+            
+            windguruSec.setAttribute("id","wg_fwdg_208543_100_1701060819023");
+            windguruSec.innerHTML = wind_grueTag;
+        }else if(region === '서프홀릭제주월정'){
+            var wind_grueTag = ''
+                wind_grueTag +=  '(function (window, document) {'
+                wind_grueTag +=  'var loader = function () {'
+                wind_grueTag +=  'var arg = ["s=208548" ,"m=100","mw=84","uid=wg_fwdg_208548_100_1701061013006" , "wj=ms" ,"tj=c" ,"waj=m" ,"tij=cm" ,"odh=0" ,"doh=24" ,"fhours=240" ,"hrsm=2" ,"vt=forecasts" ,"lng=en" ,"idbs=1" ,"ts=1" ,"p=WINDSPD,GUST,SMER,HTSGW,DIRPW,SWELL1,SWDIR1,WVHGT,WVDIR,TMPE,FLHGT,CDC,APCP1s,SLP,RATING"];'
+                wind_grueTag +=  'var script = document.createElement("script");'
+                wind_grueTag +=  'var tag = document.getElementsByTagName("script")[0];'
+                wind_grueTag +=  'script.src = "https://www.windguru.cz/js/widget.php?"+(arg.join("&"));'
+                wind_grueTag +=  'tag.parentNode.insertBefore(script, tag);};'
+                wind_grueTag +=  'window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);'
+                wind_grueTag +=  '})(window, document);'
+            
+            windguruSec.setAttribute("id","wg_fwdg_208548_100_1701061013006");
+            windguruSec.innerHTML = wind_grueTag;
+        }
 
-        
         function urlsFun(surfUrl) {
             const api_key1 = config.apikey1;
             const api_key2 = config.apikey2;
@@ -117,26 +232,27 @@
             var minutes = ('0' + today.getMinutes()).slice(-2);
             var seconds = ('0' + today.getSeconds()).slice(-2);
             var timeFormat = hours + ':' + minutes  + ':' + seconds;
+            var hours2 = Number(hours); //날씨&유의파고에 쓸 시간
+            var hours3 = hours2-2; //유속유향에 쓸 시간
 
             //현재시간
             const current_time = document.getElementById("date").innerText = year+"."+month+"."+day + " " + hours + ':' + minutes;
 
-
             //유의파고 날짜 & 시간
             var base_time = "0000";
-            if(timeFormat>=2 && timeFormat<5){
+            if(hours2>=2 && hours2<5){
                 base_time = "0200";
-            }else if(timeFormat>=5 && timeFormat<8){
+            }else if(hours2>=5 && hours2<8){
                 base_time = "0500";
-            }else if(timeFormat>=8 && timeFormat<11){
+            }else if(hours2>=8 && hours2<11){
                 base_time = "0800";
-            }else if(timeFormat>=11 && timeFormat<14){
+            }else if(hours2>=11 && hours2<14){
                 base_time = "1100";
-            }else if(timeFormat>=14 && timeFormat<17){
+            }else if(hours2>=14 && hours2<17){
                 base_time = "1400";
-            }else if(timeFormat>=17 && timeFormat<20){
+            }else if(hours2>=17 && hours2<20){
                 base_time = "1700";
-            }else if(timeFormat>=20 && timeFormat<23){
+            }else if(hours2>=20 && hours2<23){
                 base_time = "2000";
             }else{
                 base_time = "2300";
@@ -164,13 +280,12 @@
             }else if(surfUrl === '서프홀릭포항'){
                 //유의파고&날씨
                 urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=102&ny=96";
-                console.log(urls);
 
                 //풍향/풍속
                 urls[1] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date="+todayFormat+"&ResultType=json";
 
                 //유속/유향
-                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key1 + "&ObsCode=HF_0071&Date=" + todayFormat+hours3+ "&ResultType=json";
 
                 //기온
                 urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date=" + todayFormat + "&ResultType=json";
@@ -179,12 +294,12 @@
                 urls[4] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date=" + todayFormat + "&ResultType=json";
 
                 //조석(저조,고조)
+                console.log(api_key1 + todayFormat);
                 urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0901&Date=" + todayFormat + "&ResultType=json";
                 resultApi(urls);
             }else if(surfUrl === '서프홀릭강릉'){
                 //유의파고&날씨
                 urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=95&ny=129";
-                console.log(urls);
 
                 //풍향/풍속
                 urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date="+todayFormat+"&ResultType=json";
@@ -200,14 +315,85 @@
 
                 //조석(저조,고조)
                 urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭강릉경포'){
-                
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=94&ny=131";
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0089&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0089&Date=" + todayFormat + "&ResultType=json";
+
+                //기온
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭울산') {
-            
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"nx=102&ny=80";
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0020&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalHfRadar/search.do?ServiceKey=" + api_key1 + "&ObsCode=HF_0063&Date=" + todayFormat+hours3 + "&ResultType=json";
+
+                //기온 //현재해야함
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0020&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0020&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0020&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭다대포') {
-                
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=96&ny=73";
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tideObsWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0056&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalCurrentArea/search.do?ServiceKey=" + api_key1 + "&Date=" + todayFormat + "&Hour=" + +hours +"&Minute=" +minutes+"&MaxX=129&MinX=128&MaxY=36&MinY=35&ResultType=json";
+                console.log(urls[2]);
+
+                //기온 //현재해야함
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0056&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0005&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0056&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }else if(surfUrl === '서프홀릭제주월정') {
-                
+                //유의파고&날씨
+                urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=59&ny=38";
+
+                //풍향/풍속
+                urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date="+todayFormat+"&ResultType=json";
+
+                //유속/유향
+                urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date=" + todayFormat + "&ResultType=json";
+                console.log(urls[2]);
+
+                //기온 //현재해야함
+                urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date=" + todayFormat + "&ResultType=json";
+
+                //수온
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date=" + todayFormat + "&ResultType=json";
+
+                //조석(저조,고조)
+                urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0004&Date=" + todayFormat + "&ResultType=json";
+                resultApi(urls);
             }
         }
 
@@ -227,7 +413,7 @@
         }
 
         function addNode(json,index) {
-            //ㅇㅇㅇ
+            //날씨 & 유의파고
             if(index == 0){
                 let dataWh = json.response.body.items.item;
                 let dataWeather = document.getElementById("data-weather");
@@ -286,7 +472,7 @@
                         sky = "소나기";
                     }
                     var test = dataWeather.children[1].innerText = sky;
-                    wave_ht.children[3].innerText = waveHe;
+                    wave_ht.children[3].innerText = waveHe + "m";
                 }
             }
 
@@ -297,29 +483,32 @@
                     let dataLast = data[data.length -1];
                     let wind_speed = dataLast.wind_speed;
                     let wind_dir = dataLast.wind_dir;
-                    var deg = degFun(wind_dir);
-                    //wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    var rotate = "";
+                    
                     var rotate = 230 + Number(wind_dir);
-                    var scrollPosition = window.pageYOffset;
-                    var elementPosition = wind_cur1.children[1].offsetTop;
-                    if (scrollPosition >= elementPosition) {
-                        wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
-                    } else {
-                        wind_cur1.children[1].style.transform = "rotate(230deg)";
-                    }
+                    wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    var deg = degFun(wind_dir);
+                    // var rotate = 230 + Number(wind_dir);
+                    // var scrollPosition = window.pageYOffset;
+                    // var elementPosition = wind_cur1.children[1].offsetTop;
+                    // if (scrollPosition >= elementPosition) {
+                    //     wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    // } else {
+                    //     wind_cur1.children[1].style.transform = "rotate(230deg)";
+                    // }
 
-                    window.addEventListener('scroll', function() {
-                        var rotate = 230 + Number(wind_dir);
-                        var scrollPosition = window.pageYOffset;
+                    // window.addEventListener('scroll', function() {
+                    //     var rotate = 230 + Number(wind_dir);
+                    //     var scrollPosition = window.pageYOffset;
 
-                        var elementPosition = wind_cur1.children[1].offsetTop;
+                    //     var elementPosition = wind_cur1.children[1].offsetTop;
 
-                        if (scrollPosition >= elementPosition) {
-                            wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
-                        } else {
-                            wind_cur1.children[1].style.transform = "rotate(230deg)";
-                        }
-                    });
+                    //     if (scrollPosition >= elementPosition) {
+                    //         wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
+                    //     } else {
+                    //         wind_cur1.children[1].style.transform = "rotate(230deg)";
+                    //     }
+                    // });
                     wind_cur1.children[2].innerText = wind_dir + "° " + deg;
                     wind_cur1.children[3].innerText = wind_speed + "m/s";
                 }
@@ -327,17 +516,30 @@
 
             if(index == 2){//유속&유향
                 let data = json.result.data;
-                if(data != null){
-                    let wind_cur2 = document.getElementsByClassName("wind_cur2")[0];
-                    let dataLast = data[data.length -1];
-                    let current_speed = dataLast.current_speed;
-                    let current_direct = dataLast.current_direct;
-                    var rotate = 230 + Number(current_direct);
-                    wind_cur2.children[1].style.transform = "rotate("+rotate+"deg)";
-                    var deg = degFun(current_direct);
-                    wind_cur2.children[2].innerText = current_direct + "° " + deg;
-                    wind_cur2.children[3].innerText = current_speed + "m/s";
+                let wind_cur2 = document.getElementsByClassName("wind_cur2")[0];
+                let current_speed = "";
+                let current_direct = "";
+                var rotate = "";
+
+                if(region != "서프홀릭다대포"){
+                    if(data != null){
+                        let dataLast = data[data.length -1];
+                        current_speed = dataLast.current_speed;
+                        current_direct = dataLast.current_direct;
+                        rotate = 230 + Number(current_direct);
+                    }
+                }else{
+                    if(data != null){
+                        let dataLast = data[data.length -1];
+                        current_speed = dataLast.current_speed;
+                        current_direct = dataLast.current_dir;
+                        rotate = 230 + Number(current_direct);
+                    }
                 }
+                wind_cur2.children[1].style.transform = "rotate("+rotate+"deg)";
+                var deg = degFun(current_direct);
+                wind_cur2.children[2].innerText = current_direct + "° " + deg;
+                wind_cur2.children[3].innerText = current_speed + "m/s";
             }
             
             if(index == 3){//기온
@@ -351,7 +553,7 @@
                 }
             }
 
-            if(index == 4){
+            if(index == 4){//수온
                 let data = json.result.data;
                 if(data != null){
                     let wave_ht = document.getElementsByClassName("wave_ht")[0];
@@ -362,31 +564,93 @@
                 }
             }
 
-            if(index == 5){
+            if(index == 5){//조석,조위
                 let data = json.result.data;
                 if(data != null){
                     let tide_text = document.getElementsByClassName("tide_text");
-                    let dataLast1 = data[0];
-                    let dataLast2 = data[1];
-                    let dataLast3 = data[2];
-                    let dataLast4 = data[3];
-                    let low_code1 = dataLast1.tph_level;
-                    let low_time1 = dataLast1.tph_time;
-                    let hl_code1 = dataLast2.tph_level;
-                    let hl_time1 = dataLast2.tph_time;
-                    let low_code2 = dataLast3.tph_level;
-                    let low_time2 = dataLast3.tph_time;
-                    let hl_code2 = dataLast4.tph_level;
-                    let hl_time2 = dataLast4.tph_time;
+                    let tide_picture = document.getElementsByClassName("tide_picture");
+                    // let dataLast1 = "";
+                    // let dataLast2 = data[1];
+                    // let dataLast3 = data[2];
+                    // let dataLast4 = data[3];
+                    // let low_code1 = dataLast1.tph_level;
+                    // let low_time1 = dataLast1.tph_time;
+                    // let hl_code1 = dataLast2.tph_level;
+                    // let hl_time1 = dataLast2.tph_time;
+                    // let low_code2 = dataLast3.tph_level;
+                    // let low_time2 = dataLast3.tph_time;
+                    // let hl_code2 = dataLast4.tph_level;
+                    // let hl_time2 = dataLast4.tph_time;
+
+                    if(data[0] != null){
+                        dataResult = data[0];
+                        //고조 저조 태그 구분
+                        if(dataResult.hl_code === "저조"){
+                            tide_text[0].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[0].children[1].innerText = dataResult.tph_level + "cm";
+                        }else if(dataResult.hl_code === "고조"){
+                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                        }
+                    }
+                    if(data[1] != null){
+                        dataResult = data[1];
+                        //고조 저조 태그 구분
+                        if(dataResult.hl_code === "저조"){
+                            tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
+                        }else if(dataResult.hl_code === "고조"){
+                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                        }
+                    }
+                    if(data[2] != null){
+                        dataResult = data[2];
+                        if(dataResult.hl_code === "저조"){
+                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                        }else if(dataResult.hl_code === "고조"){
+                            tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                        }
+                    }
+                    if(data[3] != null){
+                        dataResult = data[3];
+                        if(dataResult.hl_code === "저조"){
+                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                        }else if(dataResult.hl_code === "고조"){
+                            tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                        }
+                    }
+
+                    //값이 없는 경우 숨기기
+                    var i = 0;
+                    for (let index = 0; index < 4; index++) {
+                        if(tide_text[index].children[0].innerText === "데이터"){
+                            tide_text[index].style.display = "none";
+                            tide_picture[index].style.display = "none";
+                            i =+1;
+                        }
+                        console.log(i);
+                    }
+                    if(i < 2){
+                        document.getElementById("tide_wrap").style.paddingLeft = "240px";
+                    }else if(i<3){
+                        document.getElementById("tide_wrap").style.paddingLeft = "307px";
+                    }else if(i<4){
+                        document.getElementById("tide_wrap").style.paddingLeft = "450px";
+                    }
                     
-                    tide_text[0].children[0].innerText = low_time1.substr(11,5);
-                    tide_text[0].children[1].innerText = low_code1 + "cm";
-                    tide_text[1].children[0].innerText = hl_time1.substr(11,5);
-                    tide_text[1].children[1].innerText = hl_code1 + "cm";
-                    tide_text[2].children[0].innerText = low_time2.substr(11,5);
-                    tide_text[2].children[1].innerText = low_code2 + "cm";
-                    tide_text[3].children[0].innerText = hl_time2.substr(11,5);
-                    tide_text[3].children[1].innerText = hl_code2 + "cm";
+                    // tide_text[0].children[0].innerText = low_time1.substr(11,5);
+                    // tide_text[0].children[1].innerText = low_code1 + "cm";
+                    // tide_text[1].children[0].innerText = hl_time1.substr(11,5);
+                    // tide_text[1].children[1].innerText = hl_code1 + "cm";
+                    // tide_text[2].children[0].innerText = low_time2.substr(11,5);
+                    // tide_text[2].children[1].innerText = low_code2 + "cm";
+                    // tide_text[3].children[0].innerText = hl_time2.substr(11,5);
+                    // tide_text[3].children[1].innerText = hl_code2 + "cm";
                 }
             }
 
