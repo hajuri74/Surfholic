@@ -200,16 +200,164 @@
 }
 
 @media all and (max-width:768px) {
+    section {
+        overflow: hidden;
+    }
+
+    #wrap {
+        padding: 0 40px;
+        box-sizing: border-box;
+        width:100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    #weather {
+        margin: 20px auto 0 auto;
+    }
+
     #weather>div>img {
         width: 52px;
     }
 
+    #date {
+        display: none;
+    }
+
     #weather_con2>p:nth-of-type(1){
-        font-size: 26px;
+        font-size: 34px;
+        margin-top: 12px;
     }
 
     #weather_star img{
         width: 19px;
+    }
+
+    .wave_ht {
+        width: 375px;
+        margin: 0 auto 50px auto;
+        clear: both;
+    }
+
+    .wave_ht img {
+        width: 100%;
+    }
+
+    .wave_ht > p:nth-of-type(1) {
+        font-size: 26px;
+        left: 180px;
+    }
+
+    .wave_ht > p:nth-of-type(2) {
+        font-size: 26px;
+        left: 220px;
+        top: 94px;
+    }
+
+    .wave_ht > p:nth-of-type(3) {
+        font-size: 38px;
+        left: 230px;
+        top: 128px;
+    }
+
+    .wave_ht > p:nth-of-type(4) {
+        font-size: 30px;
+        left: 202px;
+        top: 202px;
+        width: 200px;
+    }
+
+    .wave_ht > p:nth-of-type(5) {
+        font-size: 28px;
+        left: 162px;
+        top: 260px;
+        width: 200px;
+    }
+
+    #wave_wrap {
+        display: block;
+    }
+
+    .wind_current {
+        padding: 0;
+        width: 194px;
+        margin: 0 auto;
+        float: left;
+    }
+
+    .wind_cur1 {
+        margin-right: 30px;
+    }
+
+    .wind_current img:nth-of-type(1) {
+        width: 100%;
+    }
+
+    .wind_cur1 img:nth-of-type(2) {
+        width: 110px;
+        top: 18%;
+        left: 20%;
+    }
+
+    .wind_cur2 img:nth-of-type(2) {
+        width: 110px;
+        top: 17%;
+        left: 22%;
+    }
+
+    /* 두번째 */
+    .title {
+        margin: 0 auto;
+        display: table;
+    }
+
+    #tide_wrap {
+        display: block;
+        padding-left:0 !important;
+    }
+
+    .tide_picture {
+        width: 100px;
+    }
+
+    .tide_picture img{
+        width: 100px;
+    }
+
+    #tide_wrap>div {
+        width: 200px;
+        float:left;
+        display: flex;
+    }
+
+    .tide_text>p {
+        margin: 11px 32px 0 14px;
+    }
+
+    #api_btn {
+        width: 100%;
+        height: 43px;
+        font-size: 16px;
+        padding-top:14px;
+        margin-top: 177px;
+    }
+
+    .title2 {
+        margin-top: 50px;
+    }
+
+    #wave_wrap>.wind_cur2>p:nth-of-type(1),#wave_wrap>.wind_cur1>p:nth-of-type(1){
+        width: 120px;
+        bottom: 60px;
+    }
+
+    #wave_wrap>.wind_cur2>p:nth-of-type(2),#wave_wrap>.wind_cur1>p:nth-of-type(2) {
+        bottom: 28px;
+
+    }
+
+    .title {
+        margin: 70px auto 30px auto;
     }
 
     
