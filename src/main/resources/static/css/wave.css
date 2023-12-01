@@ -169,25 +169,32 @@
 .tide_text>p{
     font-size: 20px;
     font-weight: 900;
-    margin: 25px 43px 0 32px;
     text-align: center;
 }
 
+#tide_wrap>div {
+    margin: 25px 43px 0 32px;
+}
+
 /* 버튼 */
-#api_btn {
+#api_btn p{
     margin: 108px auto 80px;
     width: 206px;
     height: 96px;
     background-color: #9E3737;
     border-radius: 10px;
-    color: #fff;
-    font-size: 30px;
     text-align: center;
     padding-top: 30px;
     box-sizing: border-box;
     cursor: pointer;
+    overflow: hidden;
 }
 
+#api_btn{
+    color: #fff;
+    font-size: 30px;
+    text-decoration: none;
+}
 /*  */
 .title2 {
     font-size: 51px;
@@ -286,7 +293,7 @@
     }
 
     .wind_cur1 {
-        margin-right: 30px;
+        margin: 0 50px 0 60px;
     }
 
     .wind_current img:nth-of-type(1) {
@@ -314,6 +321,7 @@
     #tide_wrap {
         display: block;
         padding-left:0 !important;
+        overflow: hidden;
     }
 
     .tide_picture {
@@ -334,12 +342,12 @@
         margin: 11px 32px 0 14px;
     }
 
-    #api_btn {
+    #api_btn p{
         width: 100%;
-        height: 43px;
+        height: 46px;
         font-size: 16px;
-        padding-top:14px;
-        margin-top: 177px;
+        padding-top:12px;
+        margin-top: 60px;
     }
 
     .title2 {
@@ -347,7 +355,7 @@
     }
 
     #wave_wrap>.wind_cur2>p:nth-of-type(1),#wave_wrap>.wind_cur1>p:nth-of-type(1){
-        width: 120px;
+        width: 144px;
         bottom: 60px;
     }
 

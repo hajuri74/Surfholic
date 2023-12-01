@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            <p id="api_btn">레저활동신고</p>
+            <a id="api_btn" href="https://m.site.naver.com/0WNvX" target='_blank'><p>레저활동신고</p></a>
         </section>
 
         <p class="title2">Show Forecast</p>   
@@ -278,7 +278,6 @@
                 urls[0] = "https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?ServiceKey=" + api_key2 + "&dataType=JSON&base_date="+todayWh+"&base_time="+base_time+"&nx=100&ny=76";
                 //풍향/풍속
                 urls[1] = "http://www.khoa.go.kr/api/oceangrid/tidalBuWind/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date="+todayFormat+"&ResultType=json";
-                console.log(urls[1]);
                 //유속/유향
                 urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0090&Date=" + todayFormat + "&ResultType=json";
                 //기온
@@ -435,21 +434,28 @@
                     var sky1 = dataWh[5].fcstValue; //날씨1
                     var sky2 = dataWh[6].fcstValue; //날씨2
                     var waveHe = dataWh[8].fcstValue; //파고
+                    wave_ht.children[3].innerText = waveHe + "m";
                     if(sky1 === "1" && sky2 === "0"){
                         sky = "맑음";
                         dataWeather.children[0].src = "/images/image1-1.png";
                         weather_star.children[0].src = "/images/image2-1.png";
+                        var test = document.getElementById("data-weather2").innerText = sky;
+                        console.log(sky);
                     }else if(sky1==="3" && sky2 === "0"){
                         dataWeather.children[0].src = "/images/image1-2.png";
                         weather_star.children[0].src = "/images/image2-1.png";
                         weather_star.children[1].src = "/images/image2-1.png";
                         sky = "구름많음";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }else if(sky1==="4" && sky2 === "0"){
                         dataWeather.children[0].src = "/images/image1-3.png";
                         weather_star.children[0].src = "/images/image2-1.png";
                         weather_star.children[1].src = "/images/image2-1.png";
                         weather_star.children[2].src = "/images/image2-1.png";
                         sky = "흐림";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }else if(sky2==="1"){
                         dataWeather.children[0].src = "/images/image1-4.png";
                         weather_star.children[0].src = "/images/image2-1.png";
@@ -458,6 +464,8 @@
                         weather_star.children[3].src = "/images/image2-1.png";
                         weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }else if(sky2==="2"){
                         dataWeather.children[0].src = "/images/image1-5.png";
                         weather_star.children[0].src = "/images/image2-1.png";
@@ -466,6 +474,8 @@
                         weather_star.children[3].src = "/images/image2-1.png";
                         weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비/눈";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }else if(sky2==="3"){
                         dataWeather.children[0].src = "/images/image1-6.png";
                         weather_star.children[0].src = "/images/image2-1.png";
@@ -474,6 +484,8 @@
                         weather_star.children[3].src = "/images/image2-1.png";
                         weather_star.children[4].src = "/images/image2-1.png";
                         sky = "눈";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }else if(sky2==="4"){
                         dataWeather.children[0].src = "/images/image1-7.png";
                         weather_star.children[0].src = "/images/image2-1.png";
@@ -481,9 +493,9 @@
                         weather_star.children[2].src = "/images/image2-1.png";
                         weather_star.children[3].src = "/images/image2-1.png";
                         sky = "소나기";
+                        var test = dataWeather.children[1].innerText = sky;
+                        console.log(sky);
                     }
-                    var test = dataWeather.children[1].innerText = sky;
-                    wave_ht.children[3].innerText = waveHe + "m";
                 }
             }
 
@@ -640,16 +652,15 @@
                     var i = 0;
                     for (let index = 0; index < 4; index++) {
                         if(tide_text[index].children[0].innerText === "데이터"){
-                            tide_text[index].style.display = "none";
-                            tide_picture[index].style.display = "none";
-                            i =+1;
+                            tide_text[index].parentNode.style.display = "none";
+                            //tide_picture[index].style.display = "none";
+                            i =i+1;
                         }
-                        console.log(i);
                     }
                     if(i < 2){
                         document.getElementById("tide_wrap").style.paddingLeft = "240px";
                     }else if(i<3){
-                        document.getElementById("tide_wrap").style.paddingLeft = "307px";
+                        document.getElementById("tide_wrap").style.paddingLeft = "350px";
                     }else if(i<4){
                         document.getElementById("tide_wrap").style.paddingLeft = "450px";
                     }
