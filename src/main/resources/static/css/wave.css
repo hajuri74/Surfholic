@@ -1,5 +1,6 @@
 @charset "utf-8";
 *{margin:0; padding:0;}
+*{font-family: 'Noto Sans KR', sans-serif;}
 #wrap {
     width: 1167px;
     margin: 0 auto;
@@ -86,6 +87,10 @@
     left:220px;
 }
 
+#wind_current {
+    display: flex;
+}
+
 .wind_current{
     position: relative;
     top:0;
@@ -119,7 +124,7 @@
     transition: 1s;
 }
 
-#wave_wrap>.wind_cur1>p:nth-of-type(1){
+#wave_wrap .wind_cur1>p:nth-of-type(1){
     font-size: 16px;
     position:absolute;
     bottom: -72px;
@@ -128,7 +133,7 @@
     font-weight: bold;
 }
 
-#wave_wrap>.wind_cur2>p:nth-of-type(1) {
+#wave_wrap .wind_cur2>p:nth-of-type(1) {
     font-size: 16px;
     position:absolute;
     bottom: -72px;
@@ -137,7 +142,7 @@
     font-weight: bold;
 }
 
-#wave_wrap>.wind_cur1>p:nth-of-type(2){
+#wave_wrap .wind_cur1>p:nth-of-type(2){
     font-size: 20px;
     position:absolute;
     bottom: -50px;
@@ -146,7 +151,7 @@
     font-weight: bold;
 }
 
-#wave_wrap>.wind_cur2>p:nth-of-type(2){
+#wave_wrap .wind_cur2>p:nth-of-type(2){
     font-size: 20px;
     position:absolute;
     bottom: -50px;
@@ -233,7 +238,6 @@
 
     #weather_con2>p:nth-of-type(1){
         font-size: 34px;
-        margin-top: 12px;
     }
 
     #weather_star img{
@@ -285,15 +289,18 @@
         display: block;
     }
 
+    #wind_current {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+    }
+
     .wind_current {
         padding: 0;
         width: 194px;
-        margin: 0 auto;
-        float: left;
-    }
-
-    .wind_cur1 {
-        margin: 0 50px 0 60px;
+        height: 280px;
+        margin: 0;
     }
 
     .wind_current img:nth-of-type(1) {
@@ -354,12 +361,12 @@
         margin-top: 50px;
     }
 
-    #wave_wrap>.wind_cur2>p:nth-of-type(1),#wave_wrap>.wind_cur1>p:nth-of-type(1){
+    #wave_wrap .wind_cur2>p:nth-of-type(1),#wave_wrap .wind_cur1>p:nth-of-type(1){
         width: 144px;
         bottom: 60px;
     }
 
-    #wave_wrap>.wind_cur2>p:nth-of-type(2),#wave_wrap>.wind_cur1>p:nth-of-type(2) {
+    #wave_wrap .wind_cur2>p:nth-of-type(2),#wave_wrap .wind_cur1>p:nth-of-type(2) {
         bottom: 28px;
 
     }
@@ -369,4 +376,82 @@
     }
 
     
+}
+
+@media all and (max-width:650px) {
+    .wave_ht {
+        width: 294px;
+    }
+
+    .wave_ht > p:nth-of-type(1) {
+        left: 142px;
+        top:50px;
+        font-size: 24px;
+    }
+
+    .wave_ht > p:nth-of-type(2) {
+        left: 180px;
+        top: 77px;
+        font-size: 24px;
+    }
+
+    .wave_ht > p:nth-of-type(3){
+        left: 203px;
+        top: 105px;
+        font-size: 32px;
+    }
+
+    .wave_ht > p:nth-of-type(4){
+        font-size: 22px;
+        left: 148px;
+        top:160px;
+    }
+
+    .wave_ht > p:nth-of-type(5) {
+        left: 104px;
+        top: 203px;
+        font-size: 22px;
+    }
+
+    .wind_current {
+        gap: 40px;
+    }
+
+    .wind_cur1 img:nth-of-type(2) {
+        width: 105px;
+        top: 17%;
+        left: 18%;
+    }
+
+    .wind_cur2 img:nth-of-type(2){
+        width: 105px;
+        top: 18%;
+        left: 23%;
+    }
+
+    #wind_current>.wind_cur2>p:nth-of-type(2), #wave_wrap .wind_cur1>p:nth-of-type(2) {
+        bottom: 44px;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #wind_current>.wind_cur2>p:nth-of-type(1), #wave_wrap .wind_cur1>p:nth-of-type(1) {
+        font-size: 15px;
+        bottom: 20px;
+        text-align: center;
+    }
+
+    #tide_wrap {
+        width: 100%;
+    }
+
+    #tide_wrap>div {
+        float: none;
+        margin: 10px auto 16px auto;
+    }
+
+    .title, .title2 {
+        font-size: 36px;
+    }
+
 }
