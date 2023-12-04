@@ -310,7 +310,6 @@
                 urls[4] = "http://www.khoa.go.kr/api/oceangrid/tideObsTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0091&Date=" + todayFormat + "&ResultType=json";
 
                 //조석(저조,고조)
-                console.log(api_key1 + todayFormat);
                 urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0901&Date=" + todayFormat + "&ResultType=json";
                 resultApi(urls);
             }else if(surfUrl === '서프홀릭강릉'){
@@ -341,13 +340,13 @@
 
                 //유속/유향
                 urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0089&Date=" + todayFormat + "&ResultType=json";
-
+                
                 //기온
                 urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0094&Date=" + todayFormat + "&ResultType=json";
-
+                
                 //수온
-                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
-
+                urls[4] = "http://www.khoa.go.kr/api/oceangrid/tidalBuTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=TW_0089&Date=" + todayFormat + "&ResultType=json";
+                
                 //조석(저조,고조)
                 urls[5] = "http://www.khoa.go.kr/api/oceangrid/tideObsPreTab/search.do?ServiceKey=" + api_key1 + "&ObsCode=SO_0733&Date=" + todayFormat + "&ResultType=json";
                 resultApi(urls);
@@ -379,7 +378,6 @@
 
                 //유속/유향
                 urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalCurrentArea/search.do?ServiceKey=" + api_key1 + "&Date=" + todayFormat + "&Hour=" + +hours +"&Minute=" +minutes+"&MaxX=129&MinX=128&MaxY=36&MinY=35&ResultType=json";
-                console.log(urls[2]);
 
                 //기온 //현재해야함
                 urls[3] = "http://www.khoa.go.kr/api/oceangrid/tideObsAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=DT_0056&Date=" + todayFormat + "&ResultType=json";
@@ -399,7 +397,6 @@
 
                 //유속/유향
                 urls[2] = "http://www.khoa.go.kr/api/oceangrid/tidalBu/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date=" + todayFormat + "&ResultType=json";
-                console.log(urls[2]);
 
                 //기온 //현재해야함
                 urls[3] = "http://www.khoa.go.kr/api/oceangrid/tidalBuAirTemp/search.do?ServiceKey=" + api_key1 + "&ObsCode=KG_0028&Date=" + todayFormat + "&ResultType=json";
@@ -445,12 +442,18 @@
                         sky = "맑음";
                         dataWeather.children[0].src = "/images/image1-1.png";
                         weather_star.children[0].src = "/images/image2-1.png";
+                        weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
+                        weather_star.children[4].src = "/images/image2-1.png";
                         var test = document.getElementById("data-weather2").innerText = sky;
                         console.log(sky);
                     }else if(sky1==="3" && sky2 === "0"){
                         dataWeather.children[0].src = "/images/image1-2.png";
                         weather_star.children[0].src = "/images/image2-1.png";
                         weather_star.children[1].src = "/images/image2-1.png";
+                        weather_star.children[2].src = "/images/image2-1.png";
+                        weather_star.children[3].src = "/images/image2-1.png";
                         sky = "구름많음";
                         var test = dataWeather.children[1].innerText = sky;
                         console.log(sky);
@@ -464,40 +467,22 @@
                         console.log(sky);
                     }else if(sky2==="1"){
                         dataWeather.children[0].src = "/images/image1-4.png";
-                        weather_star.children[0].src = "/images/image2-1.png";
-                        weather_star.children[1].src = "/images/image2-1.png";
-                        weather_star.children[2].src = "/images/image2-1.png";
-                        weather_star.children[3].src = "/images/image2-1.png";
-                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비";
                         var test = dataWeather.children[1].innerText = sky;
                         console.log(sky);
                     }else if(sky2==="2"){
                         dataWeather.children[0].src = "/images/image1-5.png";
-                        weather_star.children[0].src = "/images/image2-1.png";
-                        weather_star.children[1].src = "/images/image2-1.png";
-                        weather_star.children[2].src = "/images/image2-1.png";
-                        weather_star.children[3].src = "/images/image2-1.png";
-                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "비/눈";
                         var test = dataWeather.children[1].innerText = sky;
                         console.log(sky);
                     }else if(sky2==="3"){
                         dataWeather.children[0].src = "/images/image1-6.png";
-                        weather_star.children[0].src = "/images/image2-1.png";
-                        weather_star.children[1].src = "/images/image2-1.png";
-                        weather_star.children[2].src = "/images/image2-1.png";
-                        weather_star.children[3].src = "/images/image2-1.png";
-                        weather_star.children[4].src = "/images/image2-1.png";
                         sky = "눈";
                         var test = dataWeather.children[1].innerText = sky;
                         console.log(sky);
                     }else if(sky2==="4"){
                         dataWeather.children[0].src = "/images/image1-7.png";
                         weather_star.children[0].src = "/images/image2-1.png";
-                        weather_star.children[1].src = "/images/image2-1.png";
-                        weather_star.children[2].src = "/images/image2-1.png";
-                        weather_star.children[3].src = "/images/image2-1.png";
                         sky = "소나기";
                         var test = dataWeather.children[1].innerText = sky;
                         console.log(sky);
@@ -598,72 +583,94 @@
                 if(data != null){
                     let tide_text = document.getElementsByClassName("tide_text");
                     let tide_picture = document.getElementsByClassName("tide_picture");
-                    // let dataLast1 = "";
-                    // let dataLast2 = data[1];
-                    // let dataLast3 = data[2];
-                    // let dataLast4 = data[3];
-                    // let low_code1 = dataLast1.tph_level;
-                    // let low_time1 = dataLast1.tph_time;
-                    // let hl_code1 = dataLast2.tph_level;
-                    // let hl_time1 = dataLast2.tph_time;
-                    // let low_code2 = dataLast3.tph_level;
-                    // let low_time2 = dataLast3.tph_time;
-                    // let hl_code2 = dataLast4.tph_level;
-                    // let hl_time2 = dataLast4.tph_time;
+                    let dataResult = "";
 
                     if(data[0] != null){
                         dataResult = data[0];
+                        console.log(dataResult.hl_code);
                         //고조 저조 태그 구분
                         if(dataResult.hl_code === "저조"){
                             tide_text[0].children[0].innerText = dataResult.tph_time.substr(11,5);
                             tide_text[0].children[1].innerText = dataResult.tph_level + "cm";
                         }else if(dataResult.hl_code === "고조"){
-                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
+                            tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
                         }
                     }
                     if(data[1] != null){
                         dataResult = data[1];
                         //고조 저조 태그 구분
                         if(dataResult.hl_code === "저조"){
-                            tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[0].children[0].innerText === "데이터"){
+                                tide_text[0].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[0].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }else if(dataResult.hl_code === "고조"){
-                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[1].children[0].innerText === "데이터"){
+                                tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }
                     }
                     if(data[2] != null){
                         dataResult = data[2];
                         if(dataResult.hl_code === "저조"){
-                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[0].children[0].innerText === "데이터"){
+                                tide_text[0].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[0].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }else if(dataResult.hl_code === "고조"){
-                            tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[1].children[0].innerText === "데이터"){
+                                tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }
                     }
                     if(data[3] != null){
                         dataResult = data[3];
                         if(dataResult.hl_code === "저조"){
-                            tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[0].children[0].innerText === "데이터"){
+                                tide_text[0].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[0].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[2].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[2].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }else if(dataResult.hl_code === "고조"){
-                            tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
-                            tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                            if(tide_text[1].children[0].innerText === "데이터"){
+                                tide_text[1].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[1].children[1].innerText = dataResult.tph_level + "cm";
+                            }else {
+                                tide_text[3].children[0].innerText = dataResult.tph_time.substr(11,5);
+                                tide_text[3].children[1].innerText = dataResult.tph_level + "cm";
+                            }
                         }
                     }
 
                     //값이 없는 경우 숨기기
                     var i = 0;
                     for (let index = 0; index < 4; index++) {
+                        console.log(tide_text[index].children[0]);
                         if(tide_text[index].children[0].innerText === "데이터"){
                             tide_text[index].parentNode.style.display = "none";
-                            //tide_picture[index].style.display = "none";
                             i =i+1;
                         }
                     }
-                    if(i < 2){
+                    if(i < 1){
+                        document.getElementById("tide_wrap").style.paddingLeft = "125px";
+                    }else if(i < 2){
                         document.getElementById("tide_wrap").style.paddingLeft = "240px";
                     }else if(i<3){
                         document.getElementById("tide_wrap").style.paddingLeft = "350px";
@@ -671,14 +678,6 @@
                         document.getElementById("tide_wrap").style.paddingLeft = "450px";
                     }
                     
-                    // tide_text[0].children[0].innerText = low_time1.substr(11,5);
-                    // tide_text[0].children[1].innerText = low_code1 + "cm";
-                    // tide_text[1].children[0].innerText = hl_time1.substr(11,5);
-                    // tide_text[1].children[1].innerText = hl_code1 + "cm";
-                    // tide_text[2].children[0].innerText = low_time2.substr(11,5);
-                    // tide_text[2].children[1].innerText = low_code2 + "cm";
-                    // tide_text[3].children[0].innerText = hl_time2.substr(11,5);
-                    // tide_text[3].children[1].innerText = hl_code2 + "cm";
                 }
             }
 
