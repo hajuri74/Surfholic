@@ -502,27 +502,6 @@
                     var rotate = 230 + Number(wind_dir);
                     wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
                     var deg = degFun(wind_dir);
-                    // var rotate = 230 + Number(wind_dir);
-                    // var scrollPosition = window.pageYOffset;
-                    // var elementPosition = wind_cur1.children[1].offsetTop;
-                    // if (scrollPosition >= elementPosition) {
-                    //     wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
-                    // } else {
-                    //     wind_cur1.children[1].style.transform = "rotate(230deg)";
-                    // }
-
-                    // window.addEventListener('scroll', function() {
-                    //     var rotate = 230 + Number(wind_dir);
-                    //     var scrollPosition = window.pageYOffset;
-
-                    //     var elementPosition = wind_cur1.children[1].offsetTop;
-
-                    //     if (scrollPosition >= elementPosition) {
-                    //         wind_cur1.children[1].style.transform = "rotate("+rotate+"deg)";
-                    //     } else {
-                    //         wind_cur1.children[1].style.transform = "rotate(230deg)";
-                    //     }
-                    // });
                     wind_cur1.children[2].innerText = wind_dir + "° " + deg;
                     wind_cur1.children[3].innerText = wind_speed + "m/s";
                 }
