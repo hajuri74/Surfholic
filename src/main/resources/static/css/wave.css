@@ -185,12 +185,12 @@
 /* 버튼 */
 #api_btn p{
     margin: 108px auto 80px;
-    width: 206px;
+    width: 255px;
     height: 96px;
     background-color: #9E3737;
     border-radius: 10px;
     text-align: center;
-    padding-top: 30px;
+    padding-top: 26px;
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
